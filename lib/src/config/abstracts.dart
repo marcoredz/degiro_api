@@ -1,6 +1,6 @@
 abstract class MarketActions {
-  static String buy = "BUY";
-  static String sell = "SELL";
+  static String buy = 'BUY';
+  static String sell = 'SELL';
 }
 
 abstract class MarketOrderTypes {
@@ -28,14 +28,14 @@ abstract class ProductTypes {
 }
 
 abstract class PortfolioPositionsType {
-  static String all = "all";
-  static String allPositions = "allPositions";
-  static String open = "open";
-  static String closed = "closed";
+  static String all = 'all';
+  static String allPositions = 'allPositions';
+  static String open = 'open';
+  static String closed = 'closed';
 }
 
 abstract class OrderTypes {
-  static String active = "orders";
-  static String historical = "historicalOrders";
-  static String transactions = "transactions";
+  static String active = 'orders';
+  static String historical = 'historicalOrders';
+  static String transactions = 'transactions';
 }

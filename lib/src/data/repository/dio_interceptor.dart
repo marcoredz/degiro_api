@@ -8,12 +8,12 @@ class DegiroInterceptors extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print("REQUEST[${options.method}] => PATH: ${options.baseUrl}${options.path}");
+    print('REQUEST[${options.method}] => PATH: ${options.baseUrl}${options.path}');
 
     if (options.path != loginUrl && options.path != clientInfoUrl) {
       final degiro = container.read(degiroProvider);
       if (degiro.sessionId.isEmpty || degiro.accountInfo.intAccount == invalidIntValue) {
-        return handler.reject(DioError(requestOptions: options, error: "You must log in"));
+        return handler.reject(DioError(requestOptions: options, error: 'You must log in'));
       }
     }
 

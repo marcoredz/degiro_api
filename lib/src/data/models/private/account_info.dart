@@ -61,22 +61,22 @@ class AccountInfo {
       id: invalidIntValue,
       intAccount: invalidIntValue,
       loggedInPersonId: invalidIntValue,
-      clientRole: "",
-      effectiveClientRole: "",
-      contractType: "",
-      username: "",
-      displayName: "",
-      email: "",
+      clientRole: '',
+      effectiveClientRole: '',
+      contractType: '',
+      username: '',
+      displayName: '',
+      email: '',
       firstContact: _FirstContact.init(),
       address: _Address.init(),
-      cellphoneNumber: "",
-      locale: "",
-      language: "",
-      culture: "",
-      displayLanguage: "",
+      cellphoneNumber: '',
+      locale: '',
+      language: '',
+      culture: '',
+      displayLanguage: '',
       bankAccount: _BankAccount.init(),
       flatexBankAccount: _FlatexBankAccount.init(),
-      memberCode: "",
+      memberCode: '',
       isWithdrawalAvailable: false,
       isAllocationAvailable: false,
       isIskClient: false,
@@ -169,14 +169,14 @@ class _FirstContact {
   });
 
   factory _FirstContact.init() => _FirstContact(
-      firstName: "",
-      lastName: "",
-      displayName: "",
-      nationality: "",
-      gender: "",
-      dateOfBirth: "",
-      placeOfBirth: "",
-      countryOfBirth: "");
+      firstName: '',
+      lastName: '',
+      displayName: '',
+      nationality: '',
+      gender: '',
+      dateOfBirth: '',
+      placeOfBirth: '',
+      countryOfBirth: '');
 
   Map<String, dynamic> toMap() {
     return {
@@ -221,7 +221,7 @@ class _Address {
   });
 
   factory _Address.init() =>
-      _Address(streetAddress: "", streetAddressNumber: "", zip: "", city: "", country: "");
+      _Address(streetAddress: '', streetAddressNumber: '', zip: '', city: '', country: '');
 
   Map<String, dynamic> toMap() {
     return {
@@ -263,7 +263,7 @@ class _BankAccount {
   });
 
   factory _BankAccount.init() =>
-      _BankAccount(bankAccountId: invalidIntValue, bic: "", iban: "", status: "");
+      _BankAccount(bankAccountId: invalidIntValue, bic: '', iban: '', status: '');
 
   Map<String, dynamic> toMap() {
     return {
@@ -293,7 +293,7 @@ class _FlatexBankAccount {
     required this.iban,
   });
 
-  factory _FlatexBankAccount.init() => _FlatexBankAccount(bic: "", iban: "");
+  factory _FlatexBankAccount.init() => _FlatexBankAccount(bic: '', iban: '');
 
   Map<String, dynamic> toMap() {
     return {

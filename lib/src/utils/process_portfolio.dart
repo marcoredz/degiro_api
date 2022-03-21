@@ -4,20 +4,20 @@ List<PortfolioPosition> processPortfolio(List positions) {
   List<PortfolioPosition> result = [];
 
   for (final position in positions) {
-    final newPosition = PortfolioPosition()..id = position?['id'] ?? '';
-    for (final item in position['value']) {
+    final newPosition = PortfolioPosition()..id = position['id'] ?? '';
+    for (final prop in position['value']) {
       newPosition.positionType =
-          item['name'] == 'positionType' ? item['value'] : newPosition.positionType;
-      newPosition.size = item['name'] == 'size' ? item['value'].toInt() : newPosition.size;
-      newPosition.price = item['name'] == 'price' ? item['value'].toDouble() : newPosition.price;
-      newPosition.value = item['name'] == 'value' ? item['value'].toDouble() : newPosition.value;
+          prop['name'] == 'positionType' ? prop['value'] : newPosition.positionType;
+      newPosition.size = prop['name'] == 'size' ? prop['value'].toInt() : newPosition.size;
+      newPosition.price = prop['name'] == 'price' ? prop['value'].toDouble() : newPosition.price;
+      newPosition.value = prop['name'] == 'value' ? prop['value'].toDouble() : newPosition.value;
       newPosition.breakEvenPrice =
-          item['name'] == 'breakEvenPrice' ? item['value'].toDouble() : newPosition.breakEvenPrice;
-      newPosition.realizedProductPl = item['name'] == 'realizedProductPl'
-          ? item['value'].toDouble()
+          prop['name'] == 'breakEvenPrice' ? prop['value'].toDouble() : newPosition.breakEvenPrice;
+      newPosition.realizedProductPl = prop['name'] == 'realizedProductPl'
+          ? prop['value'].toDouble()
           : newPosition.realizedProductPl;
-      newPosition.todayRealizedProductPl = item['name'] == 'todayRealizedProductPl'
-          ? item['value'].toDouble()
+      newPosition.todayRealizedProductPl = prop['name'] == 'todayRealizedProductPl'
+          ? prop['value'].toDouble()
           : newPosition.todayRealizedProductPl;
     }
 

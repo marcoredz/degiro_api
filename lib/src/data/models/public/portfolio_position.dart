@@ -1,6 +1,6 @@
 class PortfolioPosition {
-  String id = "";
-  String positionType = "";
+  String id = '';
+  String positionType = '';
   int size = 0;
   double price = 0;
   double value = 0;

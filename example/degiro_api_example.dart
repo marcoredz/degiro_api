@@ -2,10 +2,10 @@ import 'package:degiro_api/degiro_api.dart';
 import 'dart:io';
 
 void main() {
-  print("Press y to start the example ");
+  print('Press y to start the example ');
   final value = stdin.readLineSync();
 
-  if (value == "y") {
+  if (value == 'y') {
     libraryTest();
   }
 }
@@ -24,7 +24,7 @@ Future<void> libraryTest() async {
     List<PortfolioPosition> positions = await degiro.portfolioPositions();
 
     await degiro.logout();
-    print("Logged out");
+    print('Logged out');
   } on DegiroApiError catch (e) {
     print(e.message);
   }

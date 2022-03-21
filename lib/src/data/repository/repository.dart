@@ -21,17 +21,17 @@ class Repository implements IRepository {
       final response = await _dio.post(
         loginUrl,
         data: {
-          "username": username,
-          "password": password,
-          "isPassCodeReset": false,
-          "isRedirectToMobile": false
+          'username': username,
+          'password': password,
+          'isPassCodeReset': false,
+          'isRedirectToMobile': false
         },
       );
 
       return Success(LoginResponse.fromMap(response.data));
     } on DioError catch (e) {
       if (e.response != null) {
-        final degiroStatusText = e.response?.data.statusText ?? "";
+        final degiroStatusText = e.response?.data.statusText ?? '';
         return Error(DegiroApiError(code: e.response?.statusCode, message: degiroStatusText));
       }
 
@@ -46,10 +46,10 @@ class Repository implements IRepository {
     try {
       final response = await _dio.get(
         clientInfoUrl,
-        queryParameters: {"sessionId": sessionId},
+        queryParameters: {'sessionId': sessionId},
       );
 
-      return Success(AccountInfo.fromMap(response.data["data"]));
+      return Success(AccountInfo.fromMap(response.data['data']));
     } on DioError catch (e) {
       return Error(DegiroApiError(message: e.message));
     } on Exception catch (e) {
@@ -61,8 +61,8 @@ class Repository implements IRepository {
   Future<Result<DegiroApiError, void>> logoutRequest(String sessionId, int intAccount) async {
     try {
       await _dio.get(
-        "$logoutUrl;jsessionid=$sessionId",
-        queryParameters: {"sessionId": sessionId, "intAccount": intAccount},
+        '$logoutUrl;jsessionid=$sessionId',
+        queryParameters: {'sessionId': sessionId, 'intAccount': intAccount},
       );
 
       return Success(null);
@@ -80,8 +80,8 @@ class Repository implements IRepository {
   ) async {
     try {
       final response = await _dio.get(
-        "$getPortfolioUrl/$intAccount;jsessionid=$sessionId",
-        queryParameters: {"portfolio": 0},
+        '$getPortfolioUrl/$intAccount;jsessionid=$sessionId',
+        queryParameters: {'portfolio': 0},
       );
 
       return Success(response.data['portfolio']['value']);

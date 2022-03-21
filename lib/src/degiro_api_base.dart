@@ -10,9 +10,9 @@ late Provider<DegiroApi> degiroProvider;
 
 class DegiroApi {
   late Repository _repository;
-  String _sessionId = "";
-  String _username = "";
-  String _password = "";
+  String _sessionId = '';
+  String _username = '';
+  String _password = '';
   AccountInfo accountInfo = AccountInfo.init();
 
   String get sessionId => _sessionId;
@@ -32,13 +32,13 @@ class DegiroApi {
   /// This login __cannot__ work with a 2-factor authentication.
   Future<AccountInfo> login() async {
     if (_username.isEmpty || _password.isEmpty) {
-      throw DegiroApiError(message: "You must enter the username and password");
+      throw DegiroApiError(message: 'You must enter the username and password');
     }
     final loginResult = await _repository.loginRequest(_username, _password);
 
     // First: login request returning the sessionId
     await loginResult.when(
-      (error) => throw error..methodName = "login",
+      (error) => throw error..methodName = 'login',
       (loginResponse) async {
         _sessionId = loginResponse.sessionId;
 
@@ -47,13 +47,13 @@ class DegiroApi {
           final clientInfoResult = await _repository.getClientInfoRequest(_sessionId);
 
           clientInfoResult.when(
-            (error) => throw error..methodName = "login",
+            (error) => throw error..methodName = 'login',
             (_accountInfo) {
               accountInfo = _accountInfo;
             },
           );
         } else {
-          throw DegiroApiError(message: "Failed to retrieve the sessionId")..methodName = "login";
+          throw DegiroApiError(message: 'Failed to retrieve the sessionId')..methodName = 'login';
         }
       },
     );
@@ -66,7 +66,7 @@ class DegiroApi {
     final result = await _repository.logoutRequest(_sessionId, accountInfo.intAccount);
 
     result.when(
-      (error) => throw error..methodName = "logout",
+      (error) => throw error..methodName = 'logout',
       (success) => null,
     );
   }
@@ -81,15 +81,15 @@ class DegiroApi {
     List<PortfolioPosition> positions = [];
 
     result.when(
-      (error) => throw error..methodName = "portfolioPositions",
+      (error) => throw error..methodName = 'portfolioPositions',
       (_positions) {
         try {
           positions = processPortfolio(_positions);
         } on Exception catch (e) {
           throw DegiroApiError(
-            message: "Something went wrong during portfolio processing",
+            message: 'Something went wrong during portfolio processing',
             exception: e,
-          )..methodName = "processPortfolio";
+          )..methodName = 'processPortfolio';
         }
       },
     );
