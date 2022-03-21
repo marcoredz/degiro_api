@@ -1,0 +1,1 @@
+int invalidIntValue = -1;
