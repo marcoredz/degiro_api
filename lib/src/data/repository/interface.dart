@@ -21,4 +21,10 @@ abstract class IRepository {
     String sessionId,
     int intAccount,
   );
+
+  Future<Result<DegiroApiError, List<ProductInfo>>> getProductsInfoRequest(
+    String sessionId,
+    int intAccount,
+    List<String> productIds,
+  );
 }

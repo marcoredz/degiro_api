@@ -21,7 +21,9 @@ Future<void> libraryTest() async {
 
     print(degiro.sessionId);
 
-    List<PortfolioPosition> positions = await degiro.portfolioPositions();
+    // List<PortfolioPosition> positions = await degiro.portfolioPositions();
+
+    await degiro.productInfos();
 
     await degiro.logout();
     print('Logged out');

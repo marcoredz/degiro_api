@@ -96,4 +96,15 @@ class DegiroApi {
 
     return positions;
   }
+
+  //TODO temp
+  Future<void> productInfos() async {
+    final result = await _repository.getProductsInfoRequest(
+      sessionId,
+      accountInfo.intAccount,
+      ['19753994', '8565556'],
+    );
+
+    result.when((error) => throw error, (success) => print(success));
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:degiro_api/src/config/configs.dart';
 import 'package:degiro_api/src/data/repository/dio_interceptor.dart';
 import 'package:degiro_api/src/data/repository/interface.dart';
@@ -85,6 +87,42 @@ class Repository implements IRepository {
       );
 
       return Success(response.data['portfolio']['value']);
+    } on DioError catch (e) {
+      return Error(DegiroApiError(message: e.message));
+    } on Exception catch (e) {
+      return Error(DegiroApiError(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Result<DegiroApiError, List<ProductInfo>>> getProductsInfoRequest(
+    String sessionId,
+    int intAccount,
+    List<String> productIds,
+  ) async {
+    try {
+      final response = await _dio.post(
+        productInfoUrl,
+        queryParameters: {'sessionId': sessionId, 'intAccount': intAccount},
+        data: json.encode(productIds),
+      );
+
+      final data = Map<String, dynamic>.from(response.data['data']);
+
+      var list = [];
+      for (var element in data.entries) {
+        list.add(ProductInfo.fromMap(element.value));
+      }
+
+      //TODO continua
+      return Success([]);
+
+      // return Success(
+      //   (response.data['data'] as Map<String, dynamic>)
+      //       .entries
+      //       .map((e) => ProductInfo.fromMap(e))
+      //       .toList(),
+      // );
     } on DioError catch (e) {
       return Error(DegiroApiError(message: e.message));
     } on Exception catch (e) {
