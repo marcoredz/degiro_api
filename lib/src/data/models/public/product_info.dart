@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class ProductInfo {
-  String id = "";
+  String id;
   String name;
   String isin;
   String symbol;
@@ -79,46 +79,3 @@ class ProductInfo {
 
   factory ProductInfo.fromJson(String source) => ProductInfo.fromMap(json.decode(source));
 }
-
-// {
-//             "id": "19753994",
-//             "name": "Lyxor Nasdaq-100 Daily (2x) Leveraged UCITS ETF A",
-//             "isin": "FR0010342592",
-//             "symbol": "L8I7",
-//             "contractSize": 1,
-//             "productType": "ETF",
-//             "productTypeId": 131,
-//             "tradable": true,
-//             "category": "D",
-//             "currency": "EUR",
-//             "active": true,
-//             "exchangeId": "196",
-//             "onlyEodPrices": false,
-//             "orderTimeTypes": [
-//                 "DAY",
-//                 "GTC"
-//             ],
-//             "buyOrderTypes": [
-//                 "LIMIT",
-//                 "MARKET",
-//                 "STOPLOSS",
-//                 "STOPLIMIT"
-//             ],
-//             "sellOrderTypes": [
-//                 "LIMIT",
-//                 "MARKET",
-//                 "STOPLOSS",
-//                 "STOPLIMIT"
-//             ],
-//             "productBitTypes": [],
-//             "closePrice": 729.6,
-//             "closePriceDate": "2022-03-21",
-//             "feedQuality": "R",
-//             "orderBookDepth": 0,
-//             "vwdIdentifierType": "vwdkey",
-//             "vwdId": "FR0010342592.TRADE,E",
-//             "qualitySwitchable": false,
-//             "qualitySwitchFree": false,
-//             "vwdModuleId": 34
-//         }
-//     }

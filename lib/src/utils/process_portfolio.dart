@@ -21,7 +21,7 @@ List<PortfolioPosition> processPortfolio(List positions) {
           : newPosition.todayRealizedProductPl;
     }
 
-    result.add(newPosition);
+    if (newPosition.positionType == 'PRODUCT') result.add(newPosition);
   }
 
   return result;

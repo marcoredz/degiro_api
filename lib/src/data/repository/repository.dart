@@ -109,20 +109,7 @@ class Repository implements IRepository {
 
       final data = Map<String, dynamic>.from(response.data['data']);
 
-      var list = [];
-      for (var element in data.entries) {
-        list.add(ProductInfo.fromMap(element.value));
-      }
-
-      //TODO continua
-      return Success([]);
-
-      // return Success(
-      //   (response.data['data'] as Map<String, dynamic>)
-      //       .entries
-      //       .map((e) => ProductInfo.fromMap(e))
-      //       .toList(),
-      // );
+      return Success(data.entries.map((e) => ProductInfo.fromMap(e.value)).toList());
     } on DioError catch (e) {
       return Error(DegiroApiError(message: e.message));
     } on Exception catch (e) {

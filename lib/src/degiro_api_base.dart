@@ -71,7 +71,9 @@ class DegiroApi {
     );
   }
 
-  /// Gets the portfolio positions
+  /// Gets the portfolio positions.
+  ///
+  /// [PortfolioPosition] contains the [ProductInfo] property with product details.
   Future<List<PortfolioPosition>> portfolioPositions() async {
     final result = await _repository.getPortfolioPositionsRequest(
       sessionId,
@@ -80,9 +82,11 @@ class DegiroApi {
 
     List<PortfolioPosition> positions = [];
 
-    result.when(
+    // gets portfolio positions,
+    // which only contain an id as product reference
+    await result.when(
       (error) => throw error..methodName = 'portfolioPositions',
-      (_positions) {
+      (_positions) async {
         try {
           positions = processPortfolio(_positions);
         } on Exception catch (e) {
@@ -91,20 +95,56 @@ class DegiroApi {
             exception: e,
           )..methodName = 'processPortfolio';
         }
+
+        // gets product details by ids
+        final List<String> productIds = positions.map((p) => p.id).toList();
+        final productInfos = await this.productInfos(productIds);
+        for (var position in positions) {
+          position.productInfo = productInfos.firstWhere((info) => info.id == position.id);
+        }
       },
     );
 
     return positions;
   }
 
-  //TODO temp
-  Future<void> productInfos() async {
+  /// Gets the product details of a certain id.
+  Future<ProductInfo> productInfo(String id) async {
     final result = await _repository.getProductsInfoRequest(
       sessionId,
       accountInfo.intAccount,
-      ['19753994', '8565556'],
+      [id],
     );
 
-    result.when((error) => throw error, (success) => print(success));
+    late ProductInfo productInfo;
+
+    result.when(
+      (error) => error..methodName = "productInfo",
+      (_productInfo) {
+        productInfo = _productInfo.first;
+      },
+    );
+
+    return productInfo;
+  }
+
+  /// Gets multiple products detail based on multiple ids.
+  Future<List<ProductInfo>> productInfos(List<String> ids) async {
+    final result = await _repository.getProductsInfoRequest(
+      sessionId,
+      accountInfo.intAccount,
+      ids,
+    );
+
+    List<ProductInfo> productInfos = [];
+
+    result.when(
+      (error) => throw error..methodName = "productInfos",
+      (_productInfos) {
+        productInfos = _productInfos;
+      },
+    );
+
+    return productInfos;
   }
 }
