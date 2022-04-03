@@ -1,5 +1,3 @@
-// TODO: Put public facing types in this file.
-
 import 'package:degiro_api/src/config/configs.dart';
 import 'package:degiro_api/src/data/models/models.dart';
 import 'package:degiro_api/src/data/repository/repository.dart';
@@ -146,5 +144,45 @@ class DegiroApi {
     );
 
     return productInfos;
+  }
+
+  /// Gets account transactions filtered by any date.
+  /// If no date interval is provided, all account transactions are returned.
+  Future<List<Transaction>> transactions({
+    DateTime? fromDate,
+    DateTime? toDate,
+    bool groupByOrder = false,
+  }) async {
+    // Setting default filter to last month
+    fromDate ??= DateTime.now().subtract(Duration(days: 31));
+    toDate ??= DateTime.now();
+
+    final result = await _repository.getTransactions(
+      sessionId,
+      accountInfo.intAccount,
+      fromDate,
+      toDate,
+      groupByOrder,
+    );
+
+    List<Transaction> transactions = [];
+
+    // TODO check che finisca tutto
+    result.when(
+      (error) => error..methodName = 'transactions',
+      (_transactions) async {
+        transactions = _transactions;
+        // gets product details by ids
+        final List<String> productIds = transactions.map((p) => p.id.toString()).toList();
+        final productInfos = await this.productInfos(productIds);
+        for (var transaction in transactions) {
+          transaction.productInfo = productInfos.firstWhere(
+            (info) => info.id == transaction.id.toString(),
+          );
+        }
+      },
+    );
+
+    return transactions;
   }
 }

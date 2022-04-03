@@ -116,4 +116,36 @@ class Repository implements IRepository {
       return Error(DegiroApiError(message: e.toString()));
     }
   }
+
+  @override
+  Future<Result<DegiroApiError, List<Transaction>>> getTransactions(
+    String sessionId,
+    int intAccount,
+    DateTime fromDate,
+    DateTime toDate,
+    bool groupByOrder,
+  ) async {
+    try {
+      final response = await _dio.get(
+        getTransactionsUrl,
+        queryParameters: {
+          'sessionId': sessionId,
+          'intAccount': intAccount,
+          'fromDate': fromDate.toDegiroFormat(),
+          'toDate': toDate.toDegiroFormat(),
+          'groupByOrder': groupByOrder,
+        },
+      );
+
+      List<Transaction> transactions = [];
+      for (var transactionJson in response.data['data']) {
+        transactions.add(Transaction.fromMap(transactionJson));
+      }
+      return Success(transactions);
+    } on DioError catch (e) {
+      return Error(DegiroApiError(message: e.message));
+    } on Exception catch (e) {
+      return Error(DegiroApiError(message: e.toString()));
+    }
+  }
 }

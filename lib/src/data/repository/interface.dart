@@ -27,4 +27,12 @@ abstract class IRepository {
     int intAccount,
     List<String> productIds,
   );
+
+  Future<Result<DegiroApiError, List<Transaction>>> getTransactions(
+    String sessionId,
+    int intAccount,
+    DateTime fromDate,
+    DateTime toDate,
+    bool groupByOrder,
+  );
 }
