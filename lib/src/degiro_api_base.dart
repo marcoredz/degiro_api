@@ -2,12 +2,11 @@ import 'package:degiro_api/src/config/configs.dart';
 import 'package:degiro_api/src/data/models/models.dart';
 import 'package:degiro_api/src/data/repository/repository.dart';
 import 'package:degiro_api/src/utils/process_portfolio.dart';
-import 'package:riverpod/riverpod.dart';
-
-late Provider<DegiroApi> degiroProvider;
 
 class DegiroApi {
   late Repository _repository;
+  static late DegiroApi _instance;
+
   String _sessionId = '';
   String _username = '';
   String _password = '';
@@ -15,46 +14,64 @@ class DegiroApi {
 
   String get sessionId => _sessionId;
 
-  /// Must provide your username and password to use the library.
-  DegiroApi(String username, String password) {
+  static DegiroApi get instance => _instance;
+
+  /// Access to Degiro with normal credentials.
+  DegiroApi.fromCredentials(String username, String password) {
     _username = username;
     _password = password;
-    _repository = Repository();
+    _init();
+  }
 
-    // Assign the DegiroApi instance to the provider for DI
-    degiroProvider = Provider((_) => this);
+  /// Access to Degiro with the sessionId.
+  ///
+  /// How to get the sessionId: (link)
+  DegiroApi.fromSession(String sessionId) {
+    _sessionId = sessionId;
+    _init();
+  }
+
+  _init() {
+    _repository = Repository();
+    _instance = this;
   }
 
   /// Login into Degiro and gets the account info.
   ///
-  /// This login __cannot__ work with a 2-factor authentication.
+  /// It works with both [DegiroApi] constructors:
+  /// When the sessionId is not initialized, it makes the login request with username and
+  /// password to obtain the sessionId.
+  ///
+  /// When the sessionId is initialized, skips the login request and gets the client info.
   Future<AccountInfo> login() async {
-    if (_username.isEmpty || _password.isEmpty) {
-      throw DegiroApiError(message: 'You must enter the username and password');
+    if (_sessionId.isEmpty) {
+      if (_username.isEmpty || _password.isEmpty) {
+        throw DegiroApiError(message: 'You must enter the username and password');
+      }
+      final loginResult = await _repository.loginRequest(_username, _password);
+
+      // Login request returning the sessionId
+      loginResult.when(
+        (error) => throw error..methodName = 'login',
+        (loginResponse) {
+          _sessionId = loginResponse.sessionId;
+        },
+      );
     }
-    final loginResult = await _repository.loginRequest(_username, _password);
 
-    // First: login request returning the sessionId
-    await loginResult.when(
-      (error) => throw error..methodName = 'login',
-      (loginResponse) async {
-        _sessionId = loginResponse.sessionId;
+    // Gets client info based on the sessionId
+    if (_sessionId.isNotEmpty) {
+      final clientInfoResult = await _repository.getClientInfoRequest(_sessionId);
 
-        // Second: get client info based on the sessionId
-        if (_sessionId.isNotEmpty) {
-          final clientInfoResult = await _repository.getClientInfoRequest(_sessionId);
-
-          clientInfoResult.when(
-            (error) => throw error..methodName = 'login',
-            (_accountInfo) {
-              accountInfo = _accountInfo;
-            },
-          );
-        } else {
-          throw DegiroApiError(message: 'Failed to retrieve the sessionId')..methodName = 'login';
-        }
-      },
-    );
+      clientInfoResult.when(
+        (error) => throw error..methodName = 'login',
+        (_accountInfo) {
+          accountInfo = _accountInfo;
+        },
+      );
+    } else {
+      throw DegiroApiError(message: 'Failed to retrieve the sessionId')..methodName = 'login';
+    }
 
     return accountInfo;
   }
