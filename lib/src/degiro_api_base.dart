@@ -88,7 +88,7 @@ class DegiroApi {
 
   /// Gets the portfolio positions.
   ///
-  /// [PortfolioPosition] contains the [ProductInfo] property with product details.
+  /// [PortfolioPosition] contains the [ProductInfo] property with product infos.
   Future<List<PortfolioPosition>> portfolioPositions() async {
     final result = await _repository.getPortfolioPositionsRequest(
       sessionId,
@@ -97,7 +97,7 @@ class DegiroApi {
 
     List<PortfolioPosition> positions = [];
 
-    // gets portfolio positions,
+    // Gets portfolio positions,
     // which only contain an id as product reference
     await result.when(
       (error) => throw error..methodName = 'portfolioPositions',
@@ -111,9 +111,9 @@ class DegiroApi {
           )..methodName = 'processPortfolio';
         }
 
-        // gets product details by ids
-        final List<String> productIds = positions.map((p) => p.id).toList();
-        final productInfos = await this.productInfos(productIds);
+        // Gets product infos by ids
+        final Set<String> productIds = positions.map((p) => p.id).toSet();
+        final productInfos = await this.productInfos(productIds.toList());
         for (var position in positions) {
           position.productInfo = productInfos.firstWhere((info) => info.id == position.id);
         }
@@ -123,7 +123,7 @@ class DegiroApi {
     return positions;
   }
 
-  /// Gets the product details of a certain id.
+  /// Gets the product infos of a certain id.
   Future<ProductInfo> productInfo(String id) async {
     final result = await _repository.getProductsInfoRequest(
       sessionId,
@@ -143,12 +143,12 @@ class DegiroApi {
     return productInfo;
   }
 
-  /// Gets multiple products detail based on multiple ids.
+  /// Gets multiple products infos based on multiple ids.
   Future<List<ProductInfo>> productInfos(List<String> ids) async {
     final result = await _repository.getProductsInfoRequest(
       sessionId,
       accountInfo.intAccount,
-      ids,
+      ids.toSet().toList(), //toSet to assert uniqueness between ids
     );
 
     List<ProductInfo> productInfos = [];
@@ -184,22 +184,49 @@ class DegiroApi {
 
     List<Transaction> transactions = [];
 
-    // TODO check che finisca tutto
+    //TODO check che faccia tutto
     result.when(
       (error) => error..methodName = 'transactions',
       (_transactions) async {
         transactions = _transactions;
-        // gets product details by ids
-        final List<String> productIds = transactions.map((p) => p.id.toString()).toList();
-        final productInfos = await this.productInfos(productIds);
+        // Gets product infos by ids
+        final Set<String> productIds = transactions.map((p) => p.productId.toString()).toSet();
+        final productInfos = await this.productInfos(productIds.toList());
+
         for (var transaction in transactions) {
           transaction.productInfo = productInfos.firstWhere(
-            (info) => info.id == transaction.id.toString(),
+            (info) => info.id == transaction.productId.toString(),
           );
         }
       },
     );
 
     return transactions;
+  }
+
+  /// Products search by product name
+  Future<List<ProductInfo>> searchProducts({
+    required String searchText,
+    int limit = 5,
+    int offset = 0,
+  }) async {
+    final result = await _repository.searchProducts(
+      sessionId,
+      accountInfo.intAccount,
+      searchText,
+      limit,
+      offset,
+    );
+
+    List<ProductInfo> products = [];
+
+    result.when(
+      (error) => throw error..methodName = 'searchProducts',
+      (_products) {
+        products = _products;
+      },
+    );
+
+    return products;
   }
 }

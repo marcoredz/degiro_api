@@ -5,6 +5,7 @@ import 'package:degiro_api/src/data/models/public/product_info.dart';
 
 class Transaction {
   int id;
+  int productId;
   ProductInfo? productInfo;
   DateTime date;
   String buysell;
@@ -28,6 +29,7 @@ class Transaction {
 
   Transaction({
     required this.id,
+    required this.productId,
     this.productInfo,
     required this.date,
     required this.buysell,
@@ -52,7 +54,8 @@ class Transaction {
 
   factory Transaction.fromMap(Map<String, dynamic> map) {
     return Transaction(
-      id: map['id'] ?? invalidIntValue,
+      id: map['id'].toInt() ?? invalidIntValue,
+      productId: map['productId']?.toInt() ?? invalidIntValue,
       productInfo: map['productInfo'] != null ? ProductInfo.fromMap(map['productInfo']) : null,
       date: DateTime.parse(map['date']),
       buysell: map['buysell'] ?? '',

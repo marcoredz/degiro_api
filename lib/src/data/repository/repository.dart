@@ -157,4 +157,34 @@ class Repository implements IRepository {
       return Error(DegiroApiError(message: e.toString()));
     }
   }
+
+  @override
+  Future<Result<DegiroApiError, List<ProductInfo>>> searchProducts(
+    String sessionId,
+    int intAccount,
+    String searchText,
+    int limit,
+    int offset,
+  ) async {
+    try {
+      final response = await _dio.get(
+        productSearchUrl,
+        queryParameters: {
+          'searchText': searchText,
+          'limit': limit,
+          'offset': offset,
+          'intAccount': intAccount,
+          'sessionId': sessionId,
+        },
+      );
+
+      final List<dynamic> productsJson = response.data['products'];
+
+      return Success(productsJson.map((e) => ProductInfo.fromMap(e)).toList());
+    } on DioError catch (e) {
+      return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
+    } on Exception catch (e) {
+      return Error(DegiroApiError(message: e.toString()));
+    }
+  }
 }

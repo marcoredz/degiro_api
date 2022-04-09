@@ -35,4 +35,12 @@ abstract class IRepository {
     DateTime toDate,
     bool groupByOrder,
   );
+
+  Future<Result<DegiroApiError, List<ProductInfo>>> searchProducts(
+    String sessionId,
+    int intAccount,
+    String searchText,
+    int limit,
+    int offset,
+  );
 }
