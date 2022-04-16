@@ -26,6 +26,9 @@ Future<void> libraryTest() async {
     // List<PortfolioPosition> positions = await degiro.portfolioPositions();
     List<Transaction> transactions = await degiro.transactions(fromDate: DateTime(2022, 3, 15));
     // List<ProductInfo> products = await degiro.searchProducts(searchText: 'nasdaq');
+    for (var t in transactions) {
+      print(t.productInfo?.name);
+    }
 
     await degiro.logout();
     print('Logged out');

@@ -146,11 +146,9 @@ class Repository implements IRepository {
         },
       );
 
-      List<Transaction> transactions = [];
-      for (var transactionJson in response.data['data']) {
-        transactions.add(Transaction.fromMap(transactionJson));
-      }
-      return Success(transactions);
+      final data = List.from(response.data['data']);
+
+      return Success(data.map((e) => Transaction.fromMap(e)).toList());
     } on DioError catch (e) {
       return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
     } on Exception catch (e) {

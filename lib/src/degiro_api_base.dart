@@ -184,9 +184,8 @@ class DegiroApi {
 
     List<Transaction> transactions = [];
 
-    //TODO check che faccia tutto
-    result.when(
-      (error) => error..methodName = 'transactions',
+    await result.when(
+      (error) => throw error..methodName = 'transactions',
       (_transactions) async {
         transactions = _transactions;
         // Gets product infos by ids
