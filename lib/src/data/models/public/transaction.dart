@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:degiro_api/src/config/configs.dart';
 import 'package:degiro_api/src/data/models/public/product_info.dart';
 
+enum Buysell { buy, sell, unkown }
+
 class Transaction {
   int id;
   int productId;
@@ -24,8 +26,19 @@ class Transaction {
   double totalFeesInBaseCurrency;
   double totalPlusFeeInBaseCurrency;
   double totalPlusAllFeesInBaseCurrency;
-  int transactionTypeId; //TODO enum
+  int transactionTypeId;
   String tradingVenue;
+
+  Buysell get action {
+    switch (buysell) {
+      case 'B':
+        return Buysell.buy;
+      case 'S':
+        return Buysell.sell;
+      default:
+        return Buysell.unkown;
+    }
+  }
 
   Transaction({
     required this.id,

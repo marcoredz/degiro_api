@@ -116,6 +116,8 @@ class Repository implements IRepository {
         data: json.encode(productIds),
       );
 
+      if (Map.from(response.data).isEmpty) return Success([]);
+
       final data = Map<String, dynamic>.from(response.data['data']);
 
       return Success(data.entries.map((e) => ProductInfo.fromMap(e.value)).toList());
