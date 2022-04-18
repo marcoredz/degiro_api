@@ -148,6 +148,8 @@ class Repository implements IRepository {
         },
       );
 
+      if (Map.from(response.data).isEmpty) return Success([]);
+
       final data = List.from(response.data['data']);
 
       return Success(data.map((e) => Transaction.fromMap(e)).toList());
@@ -181,6 +183,37 @@ class Repository implements IRepository {
       final List<dynamic> productsJson = response.data['products'];
 
       return Success(productsJson.map((e) => ProductInfo.fromMap(e)).toList());
+    } on DioError catch (e) {
+      return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
+    } on Exception catch (e) {
+      return Error(DegiroApiError(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Result<DegiroApiError, List<CashMovement>>> getCashMovements(
+    String sessionId,
+    int intAccount,
+    DateTime fromDate,
+    DateTime toDate,
+  ) async {
+    try {
+      final response = await _dio.get(
+        getAccountBalanceUrl,
+        queryParameters: {
+          'sessionId': sessionId,
+          'intAccount': intAccount,
+          'fromDate': fromDate.toDegiroFormat(),
+          'toDate': toDate.toDegiroFormat(),
+        },
+      );
+
+      if (Map.from(response.data).isEmpty) return Success([]);
+      if (Map.from(response.data['data']).isEmpty) return Success([]);
+
+      final data = List.from(response.data['data']['cashMovements']);
+
+      return Success(data.map((e) => CashMovement.fromMap(e)).toList());
     } on DioError catch (e) {
       return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
     } on Exception catch (e) {

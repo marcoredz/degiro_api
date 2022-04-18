@@ -228,4 +228,38 @@ class DegiroApi {
 
     return products;
   }
+
+  /// Account balance: gets all the cash movements done in the account
+  Future<List<CashMovement>> cashMovements({
+    DateTime? fromDate,
+    DateTime? toDate,
+    bool showDegiroMovements = false,
+  }) async {
+    // Setting default filter to last month
+    fromDate ??= DateTime.now().subtract(Duration(days: 31));
+    toDate ??= DateTime.now();
+
+    final result = await _repository.getCashMovements(
+      sessionId,
+      accountInfo.intAccount,
+      fromDate,
+      toDate,
+    );
+
+    List<CashMovement> movements = [];
+
+    movements = result.when(
+      (error) => throw error..methodName = "cashMovements",
+      (_movements) => _movements,
+    );
+
+    // As default 'showDegiroMovements' is set to false.
+    // Normally, if you want to know the account cash movements it's more clear to see just the
+    // real operations because Degiro adds its own operations regarding flatex bank account.
+    if (!showDegiroMovements) {
+      movements = movements.where((m) => m.movementType != MovementType.flatexCashSweep).toList();
+    }
+
+    return movements;
+  }
 }

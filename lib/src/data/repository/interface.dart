@@ -43,4 +43,11 @@ abstract class IRepository {
     int limit,
     int offset,
   );
+
+  Future<Result<DegiroApiError, List<CashMovement>>> getCashMovements(
+    String sessionId,
+    int intAccount,
+    DateTime fromDate,
+    DateTime toDate,
+  );
 }
