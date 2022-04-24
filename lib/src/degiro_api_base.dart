@@ -48,6 +48,7 @@ class DegiroApi {
       if (_username.isEmpty || _password.isEmpty) {
         throw DegiroApiError(message: 'You must enter the username and password');
       }
+
       final loginResult = await _repository.loginRequest(_username, _password);
 
       // Login request returning the sessionId
@@ -208,6 +209,9 @@ class DegiroApi {
     required String searchText,
     int limit = 5,
     int offset = 0,
+    int? productType,
+    String? sortColumn,
+    String? sortType,
   }) async {
     final result = await _repository.searchProducts(
       sessionId,
@@ -215,6 +219,9 @@ class DegiroApi {
       searchText,
       limit,
       offset,
+      productType ?? invalidIntValue,
+      sortColumn,
+      sortType,
     );
 
     List<ProductInfo> products = [];

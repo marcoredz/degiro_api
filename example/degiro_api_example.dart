@@ -25,18 +25,22 @@ Future<void> libraryTest() async {
 
     // List<PortfolioPosition> positions = await degiro.portfolioPositions();
     // List<Transaction> transactions = await degiro.transactions(fromDate: DateTime(2022, 4, 18));
-    // List<ProductInfo> products = await degiro.searchProducts(searchText: 'nasdaq');
-    List<CashMovement> movements = await degiro.cashMovements(
-      fromDate: DateTime(2022, 02, 23),
-      toDate: DateTime(2022, 02, 25),
-      showDegiroMovements: true,
+    List<ProductInfo> products = await degiro.searchProducts(
+      searchText: 'nasdaq',
+      sortColumn: 'name',
+      sortType: 'asc',
     );
-    for (var e in movements) {
-      print(e.description);
+    // List<CashMovement> movements = await degiro.cashMovements(
+    //   fromDate: DateTime(2022, 02, 23),
+    //   toDate: DateTime(2022, 02, 25),
+    //   showDegiroMovements: true,
+    // );
+    for (var e in products) {
+      print(e.name);
     }
 
-    await degiro.logout();
-    print('Logged out');
+    // await degiro.logout();
+    // print('Logged out');
   } on DegiroApiError catch (e) {
     print(e.message);
   }

@@ -167,7 +167,10 @@ class Repository implements IRepository {
     String searchText,
     int limit,
     int offset,
-  ) async {
+    int productType, [
+    String? sortColumn,
+    String? sortType,
+  ]) async {
     try {
       final response = await _dio.get(
         productSearchUrl,
@@ -177,13 +180,21 @@ class Repository implements IRepository {
           'offset': offset,
           'intAccount': intAccount,
           'sessionId': sessionId,
+          if (productType != invalidIntValue) 'productTypeId': productType,
+          if (sortColumn != null) 'sortColumns': sortColumn,
+          if (sortType != null) 'sortTypes': sortType,
         },
       );
 
-      final List<dynamic> productsJson = response.data['products'];
+      final productsJson = List.from(response.data['products'] ?? []);
 
       return Success(productsJson.map((e) => ProductInfo.fromMap(e)).toList());
     } on DioError catch (e) {
+      if (e.response != null) {
+        final errors = List.from(e.response?.data['errors']);
+        return Error(DegiroApiError(message: errors.first['text'], code: e.response?.statusCode));
+      }
+
       return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));

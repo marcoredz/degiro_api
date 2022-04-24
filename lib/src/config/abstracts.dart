@@ -16,6 +16,7 @@ abstract class TimeTypes {
 }
 
 abstract class ProductTypes {
+  static int all = -1;
   static int shares = 1;
   static int bonds = 2;
   static int futures = 7;

@@ -42,7 +42,10 @@ abstract class IRepository {
     String searchText,
     int limit,
     int offset,
-  );
+    int productType, [
+    String? sortColumn,
+    String? sortType,
+  ]);
 
   Future<Result<DegiroApiError, List<CashMovement>>> getCashMovements(
     String sessionId,
