@@ -28,7 +28,7 @@ abstract class IRepository {
     List<String> productIds,
   );
 
-  Future<Result<DegiroApiError, List<Transaction>>> getTransactions(
+  Future<Result<DegiroApiError, List<Transaction>>> getTransactionsRequest(
     String sessionId,
     int intAccount,
     DateTime fromDate,
@@ -36,7 +36,7 @@ abstract class IRepository {
     bool groupByOrder,
   );
 
-  Future<Result<DegiroApiError, List<ProductInfo>>> searchProducts(
+  Future<Result<DegiroApiError, List<ProductInfo>>> searchProductsRequest(
     String sessionId,
     int intAccount,
     String searchText,
@@ -47,7 +47,7 @@ abstract class IRepository {
     String? sortType,
   ]);
 
-  Future<Result<DegiroApiError, List<CashMovement>>> getCashMovements(
+  Future<Result<DegiroApiError, List<CashMovement>>> getCashMovementsRequest(
     String sessionId,
     int intAccount,
     DateTime fromDate,

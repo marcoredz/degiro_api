@@ -175,7 +175,7 @@ class DegiroApi {
     fromDate ??= DateTime.now().subtract(Duration(days: 31));
     toDate ??= DateTime.now();
 
-    final result = await _repository.getTransactions(
+    final result = await _repository.getTransactionsRequest(
       sessionId,
       accountInfo.intAccount,
       fromDate,
@@ -213,7 +213,7 @@ class DegiroApi {
     String? sortColumn,
     String? sortType,
   }) async {
-    final result = await _repository.searchProducts(
+    final result = await _repository.searchProductsRequest(
       sessionId,
       accountInfo.intAccount,
       searchText,
@@ -246,7 +246,7 @@ class DegiroApi {
     fromDate ??= DateTime.now().subtract(Duration(days: 31));
     toDate ??= DateTime.now();
 
-    final result = await _repository.getCashMovements(
+    final result = await _repository.getCashMovementsRequest(
       sessionId,
       accountInfo.intAccount,
       fromDate,
