@@ -231,4 +231,28 @@ class Repository implements IRepository {
       return Error(DegiroApiError(message: e.toString()));
     }
   }
+
+  @override
+  Future<Result<DegiroApiError, String>> checkOrderRequest(
+    String sessionId,
+    int intAccount,
+    CheckOrderRequestBody body,
+  ) async {
+    try {
+      final response = await _dio.post(
+        '$checkOrderUrl;jsessionid=$sessionId',
+        queryParameters: {
+          'sessionId': sessionId,
+          'intAccount': intAccount,
+        },
+        data: body.toMap(),
+      );
+
+      return Success(response.data['data']['confirmationId'].toString());
+    } on DioError catch (e) {
+      return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
+    } on Exception catch (e) {
+      return Error(DegiroApiError(message: e.toString()));
+    }
+  }
 }

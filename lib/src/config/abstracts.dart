@@ -1,9 +1,9 @@
-abstract class MarketActions {
+abstract class OrderActions {
   static String buy = 'BUY';
   static String sell = 'SELL';
 }
 
-abstract class MarketOrderTypes {
+abstract class OrderTypes {
   static int limited = 0;
   static int stopLossLimit = 1;
   static int market = 2;
@@ -11,8 +11,8 @@ abstract class MarketOrderTypes {
 }
 
 abstract class TimeTypes {
-  static int day = 1;
-  static int continuos = 3;
+  static const int day = 1;
+  static const int continuos = 3;
 }
 
 abstract class ProductTypes {
@@ -35,8 +35,8 @@ abstract class PortfolioPositionsType {
   static String closed = 'closed';
 }
 
-abstract class OrderTypes {
-  static String active = 'orders';
-  static String historical = 'historicalOrders';
-  static String transactions = 'transactions';
-}
+// abstract class OrderTypes {
+//   static String active = 'orders';
+//   static String historical = 'historicalOrders';
+//   static String transactions = 'transactions';
+// }
