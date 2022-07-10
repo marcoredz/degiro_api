@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:degiro_api/src/config/configs.dart';
+import 'package:degiro_api/src/data/models/models.dart';
 import 'package:degiro_api/src/data/repository/dio_interceptor.dart';
 import 'package:degiro_api/src/data/repository/interface.dart';
-import 'package:degiro_api/src/data/models/models.dart';
-import 'package:multiple_result/multiple_result.dart';
 import 'package:dio/dio.dart';
+import 'package:multiple_result/multiple_result.dart';
 
 class Repository implements IRepository {
   late Dio _dio;
@@ -225,30 +225,6 @@ class Repository implements IRepository {
       final data = List.from(response.data['data']['cashMovements']);
 
       return Success(data.map((e) => CashMovement.fromMap(e)).toList());
-    } on DioError catch (e) {
-      return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
-    } on Exception catch (e) {
-      return Error(DegiroApiError(message: e.toString()));
-    }
-  }
-
-  @override
-  Future<Result<DegiroApiError, String>> checkOrderRequest(
-    String sessionId,
-    int intAccount,
-    CheckOrderRequestBody body,
-  ) async {
-    try {
-      final response = await _dio.post(
-        '$checkOrderUrl;jsessionid=$sessionId',
-        queryParameters: {
-          'sessionId': sessionId,
-          'intAccount': intAccount,
-        },
-        data: body.toMap(),
-      );
-
-      return Success(response.data['data']['confirmationId'].toString());
     } on DioError catch (e) {
       return Error(DegiroApiError(message: e.message, code: e.response?.statusCode));
     } on Exception catch (e) {

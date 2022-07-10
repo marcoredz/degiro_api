@@ -14,7 +14,4 @@ const String productInfoUrl = '/product_search/secure/v5/products/info';
 const String getTransactionsUrl = '/reporting/secure/v4/transactions';
 const String ordersUrl = '/reporting/secure/v4/order-history';
 
-const String checkOrderUrl = '/trading/secure/v5/checkOrder';
-const String orderUrl = '/trading/secure/v5/order'; //confirmOrderUrl?
-
 const String getPortfolioUrl = '/trading/secure/v5/update';

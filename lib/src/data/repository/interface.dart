@@ -53,10 +53,4 @@ abstract class IRepository {
     DateTime fromDate,
     DateTime toDate,
   );
-
-  Future<Result<DegiroApiError, String>> checkOrderRequest(
-    String sessionId,
-    int intAccount,
-    CheckOrderRequestBody body,
-  );
 }
