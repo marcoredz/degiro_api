@@ -7,7 +7,11 @@
 
 ## 0.2.0
 
-- new features added:
+- New features added:
     - transactions
     - search products
     - account cash movements
+
+### 0.2.1
+
+- Fixes to pass static analysis
