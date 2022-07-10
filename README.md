@@ -1,3 +1,6 @@
+<a href="https://pub.dev/packages/degiro_api">
+  <img src="https://img.shields.io/pub/v/degiro_api">
+</a>
 <a href="https://github.com/marcoredz/degiro_api/blob/master/LICENSE">
   <img src="https://img.shields.io/github/license/isar/isar?color=%23007A88&labelColor=333940&logo=apache">
 </a>
