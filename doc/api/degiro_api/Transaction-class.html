@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Transaction class from the degiro_api library, for the Dart programming language.">
+  <title>Transaction class - degiro_api library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">degiro_api</a></li>
+    <li><a href="../degiro_api/degiro_api-library.html">degiro_api</a></li>
+    <li class="self-crumb">Transaction class</li>
+  </ol>
+  <div class="self-name">Transaction</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-class">Transaction</span> class 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+
+
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+
+    <dl class="constructor-summary-list">
+        <dt id="Transaction" class="callable">
+          <span class="name"><a href="../degiro_api/Transaction/Transaction.html">Transaction</a></span><span class="signature">(<span class="parameter" id="-param-id">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span>, </span><span class="parameter" id="-param-productId"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">productId</span>, </span><span class="parameter" id="-param-productInfo"><span class="type-annotation"><a href="../degiro_api/ProductInfo-class.html">ProductInfo</a>?</span> <span class="parameter-name">productInfo</span>, </span><span class="parameter" id="-param-date"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">date</span>, </span><span class="parameter" id="-param-buysell"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">buysell</span>, </span><span class="parameter" id="-param-price"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">price</span>, </span><span class="parameter" id="-param-quantity"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">quantity</span>, </span><span class="parameter" id="-param-total"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">total</span>, </span><span class="parameter" id="-param-orderTypeId"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">orderTypeId</span>, </span><span class="parameter" id="-param-counterParty"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">counterParty</span>, </span><span class="parameter" id="-param-transfered"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">transfered</span>, </span><span class="parameter" id="-param-fxRate"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">fxRate</span>, </span><span class="parameter" id="-param-nettFxRate"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">nettFxRate</span>, </span><span class="parameter" id="-param-grossFxRate"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">grossFxRate</span>, </span><span class="parameter" id="-param-autoFxFeeInBaseCurrency"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">autoFxFeeInBaseCurrency</span>, </span><span class="parameter" id="-param-totalInBaseCurrency"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">totalInBaseCurrency</span>, </span><span class="parameter" id="-param-feeInBaseCurrency"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">feeInBaseCurrency</span>, </span><span class="parameter" id="-param-totalFeesInBaseCurrency"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">totalFeesInBaseCurrency</span>, </span><span class="parameter" id="-param-totalPlusFeeInBaseCurrency"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">totalPlusFeeInBaseCurrency</span>, </span><span class="parameter" id="-param-totalPlusAllFeesInBaseCurrency"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">totalPlusAllFeesInBaseCurrency</span>, </span><span class="parameter" id="-param-transactionTypeId"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">transactionTypeId</span>, </span><span class="parameter" id="-param-tradingVenue"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">tradingVenue</span>}</span>)</span>
+        </dt>
+        <dd>
+          
+        </dd>
+        <dt id="Transaction.fromJson" class="callable">
+          <span class="name"><a href="../degiro_api/Transaction/Transaction.fromJson.html">Transaction.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-source"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">source</span></span>)</span>
+        </dt>
+        <dd>
+          
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="Transaction.fromMap" class="callable">
+          <span class="name"><a href="../degiro_api/Transaction/Transaction.fromMap.html">Transaction.fromMap</a></span><span class="signature">(<span class="parameter" id="fromMap-param-map"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span></span>)</span>
+        </dt>
+        <dd>
+          
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="action" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/action.html">action</a></span>
+  <span class="signature">&#8594; <a href="../degiro_api/Buysell.html">Buysell</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read-only</div>
+
+</dd>
+
+        <dt id="autoFxFeeInBaseCurrency" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/autoFxFeeInBaseCurrency.html">autoFxFeeInBaseCurrency</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="buysell" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/buysell.html">buysell</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="counterParty" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/counterParty.html">counterParty</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="date" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/date.html">date</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="feeInBaseCurrency" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/feeInBaseCurrency.html">feeInBaseCurrency</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="fxRate" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/fxRate.html">fxRate</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="grossFxRate" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/grossFxRate.html">grossFxRate</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="id" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/id.html">id</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="nettFxRate" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/nettFxRate.html">nettFxRate</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="orderTypeId" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/orderTypeId.html">orderTypeId</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="price" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/price.html">price</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="productId" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/productId.html">productId</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="productInfo" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/productInfo.html">productInfo</a></span>
+  <span class="signature">&#8596; <a href="../degiro_api/ProductInfo-class.html">ProductInfo</a>?</span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="quantity" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/quantity.html">quantity</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="total" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/total.html">total</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="totalFeesInBaseCurrency" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/totalFeesInBaseCurrency.html">totalFeesInBaseCurrency</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="totalInBaseCurrency" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/totalInBaseCurrency.html">totalInBaseCurrency</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="totalPlusAllFeesInBaseCurrency" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/totalPlusAllFeesInBaseCurrency.html">totalPlusAllFeesInBaseCurrency</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="totalPlusFeeInBaseCurrency" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/totalPlusFeeInBaseCurrency.html">totalPlusFeeInBaseCurrency</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="tradingVenue" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/tradingVenue.html">tradingVenue</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="transactionTypeId" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/transactionTypeId.html">transactionTypeId</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="transfered" class="property">
+  <span class="name"><a href="../degiro_api/Transaction/transfered.html">transfered</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read / write</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a non-existent method or property is accessed.
+  <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features">inherited</div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features">inherited</div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">degiro_api</a></li>
+  <li><a href="../degiro_api/degiro_api-library.html">degiro_api</a></li>
+  <li class="self-crumb">Transaction class</li>
+</ol>
+
+
+    <h5>degiro_api library</h5>
+    <ol>
+  <li class="section-title"><a href="../degiro_api/degiro_api-library.html#classes">Classes</a></li>
+  <li><a href="../degiro_api/AccountInfo-class.html">AccountInfo</a></li>
+  <li><a href="../degiro_api/CashMovement-class.html">CashMovement</a></li>
+  <li><a href="../degiro_api/DegiroApi-class.html">DegiroApi</a></li>
+  <li><a href="../degiro_api/OrderActions-class.html">OrderActions</a></li>
+  <li><a href="../degiro_api/OrderTypes-class.html">OrderTypes</a></li>
+  <li><a href="../degiro_api/PortfolioPosition-class.html">PortfolioPosition</a></li>
+  <li><a href="../degiro_api/PortfolioPositionsType-class.html">PortfolioPositionsType</a></li>
+  <li><a href="../degiro_api/ProductInfo-class.html">ProductInfo</a></li>
+  <li><a href="../degiro_api/ProductTypes-class.html">ProductTypes</a></li>
+  <li><a href="../degiro_api/TimeTypes-class.html">TimeTypes</a></li>
+  <li><a href="../degiro_api/Transaction-class.html">Transaction</a></li>
+
+
+
+
+
+
+  <li class="section-title"><a href="../degiro_api/degiro_api-library.html#enums">Enums</a></li>
+  <li><a href="../degiro_api/Buysell.html">Buysell</a></li>
+  <li><a href="../degiro_api/MovementType.html">MovementType</a></li>
+
+
+  <li class="section-title"><a href="../degiro_api/degiro_api-library.html#exceptions">Exceptions</a></li>
+  <li><a href="../degiro_api/DegiroApiError-class.html">DegiroApiError</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+        <li class="section-title"><a href="../degiro_api/Transaction-class.html#constructors">Constructors</a></li>
+          <li><a href="../degiro_api/Transaction/Transaction.html">Transaction</a></li>
+          <li><a href="../degiro_api/Transaction/Transaction.fromJson.html">fromJson</a></li>
+          <li><a href="../degiro_api/Transaction/Transaction.fromMap.html">fromMap</a></li>
+
+
+    <li class="section-title">
+      <a href="../degiro_api/Transaction-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../degiro_api/Transaction/action.html">action</a></li>
+    <li><a href="../degiro_api/Transaction/autoFxFeeInBaseCurrency.html">autoFxFeeInBaseCurrency</a></li>
+    <li><a href="../degiro_api/Transaction/buysell.html">buysell</a></li>
+    <li><a href="../degiro_api/Transaction/counterParty.html">counterParty</a></li>
+    <li><a href="../degiro_api/Transaction/date.html">date</a></li>
+    <li><a href="../degiro_api/Transaction/feeInBaseCurrency.html">feeInBaseCurrency</a></li>
+    <li><a href="../degiro_api/Transaction/fxRate.html">fxRate</a></li>
+    <li><a href="../degiro_api/Transaction/grossFxRate.html">grossFxRate</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../degiro_api/Transaction/id.html">id</a></li>
+    <li><a href="../degiro_api/Transaction/nettFxRate.html">nettFxRate</a></li>
+    <li><a href="../degiro_api/Transaction/orderTypeId.html">orderTypeId</a></li>
+    <li><a href="../degiro_api/Transaction/price.html">price</a></li>
+    <li><a href="../degiro_api/Transaction/productId.html">productId</a></li>
+    <li><a href="../degiro_api/Transaction/productInfo.html">productInfo</a></li>
+    <li><a href="../degiro_api/Transaction/quantity.html">quantity</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../degiro_api/Transaction/total.html">total</a></li>
+    <li><a href="../degiro_api/Transaction/totalFeesInBaseCurrency.html">totalFeesInBaseCurrency</a></li>
+    <li><a href="../degiro_api/Transaction/totalInBaseCurrency.html">totalInBaseCurrency</a></li>
+    <li><a href="../degiro_api/Transaction/totalPlusAllFeesInBaseCurrency.html">totalPlusAllFeesInBaseCurrency</a></li>
+    <li><a href="../degiro_api/Transaction/totalPlusFeeInBaseCurrency.html">totalPlusFeeInBaseCurrency</a></li>
+    <li><a href="../degiro_api/Transaction/tradingVenue.html">tradingVenue</a></li>
+    <li><a href="../degiro_api/Transaction/transactionTypeId.html">transactionTypeId</a></li>
+    <li><a href="../degiro_api/Transaction/transfered.html">transfered</a></li>
+
+    <li class="section-title inherited"><a href="../degiro_api/Transaction-class.html#instance-methods">Methods</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+
+    <li class="section-title inherited"><a href="../degiro_api/Transaction-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    degiro_api
+      0.2.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
