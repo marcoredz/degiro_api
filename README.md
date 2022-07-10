@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/github/license/isar/isar?color=%23007A88&labelColor=333940&logo=apache">
 </a>
 
-A Dart wrapper to provide in a simply way Degiro APIs.
+A Dart wrapper to use the Degiro APIs in a simple way.
 
 Since it is just a wrapper, consider these APIs unofficial.
 
