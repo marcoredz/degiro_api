@@ -1,3 +1,7 @@
+<a href="https://github.com/marcoredz/degiro_api/blob/master/LICENSE">
+  <img src="https://img.shields.io/github/license/isar/isar?color=%23007A88&labelColor=333940&logo=apache">
+</a>
+
 A Dart wrapper to provide in a simply way Degiro APIs.
 
 Since it is just a wrapper, consider these APIs unofficial.
