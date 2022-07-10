@@ -135,7 +135,7 @@ class DegiroApi {
     late ProductInfo productInfo;
 
     result.when(
-      (error) => error..methodName = "productInfo",
+      (error) => throw error..methodName = "productInfo",
       (_productInfo) {
         productInfo = _productInfo.first;
       },
