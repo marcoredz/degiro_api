@@ -46,7 +46,9 @@ class DegiroApi {
   Future<AccountInfo> login() async {
     if (_sessionId.isEmpty) {
       if (_username.isEmpty || _password.isEmpty) {
-        throw DegiroApiError(message: 'You must enter the username and password');
+        throw DegiroApiError(
+          message: 'You must enter the username and password',
+        );
       }
 
       final loginResult = await _repository.loginRequest(_username, _password);
@@ -62,7 +64,8 @@ class DegiroApi {
 
     // Gets client info based on the sessionId
     if (_sessionId.isNotEmpty) {
-      final clientInfoResult = await _repository.getClientInfoRequest(_sessionId);
+      final clientInfoResult =
+          await _repository.getClientInfoRequest(_sessionId);
 
       clientInfoResult.when(
         (error) => throw error..methodName = 'login',
@@ -71,7 +74,8 @@ class DegiroApi {
         },
       );
     } else {
-      throw DegiroApiError(message: 'Failed to retrieve the sessionId')..methodName = 'login';
+      throw DegiroApiError(message: 'Failed to retrieve the sessionId')
+        ..methodName = 'login';
     }
 
     return accountInfo;
@@ -79,7 +83,8 @@ class DegiroApi {
 
   /// Logout from Degiro. The session is disposed.
   Future<void> logout() async {
-    final result = await _repository.logoutRequest(_sessionId, accountInfo.intAccount);
+    final result =
+        await _repository.logoutRequest(_sessionId, accountInfo.intAccount);
 
     result.when(
       (error) => throw error..methodName = 'logout',
@@ -116,7 +121,8 @@ class DegiroApi {
         final Set<String> productIds = positions.map((p) => p.id).toSet();
         final productInfos = await this.productInfos(productIds.toList());
         for (var position in positions) {
-          position.productInfo = productInfos.firstWhere((info) => info.id == position.id);
+          position.productInfo =
+              productInfos.firstWhere((info) => info.id == position.id);
         }
       },
     );
@@ -190,7 +196,8 @@ class DegiroApi {
       (_transactions) async {
         transactions = _transactions;
         // Gets product infos by ids
-        final Set<String> productIds = transactions.map((p) => p.productId.toString()).toSet();
+        final Set<String> productIds =
+            transactions.map((p) => p.productId.toString()).toSet();
         final productInfos = await this.productInfos(productIds.toList());
 
         for (var transaction in transactions) {
@@ -264,7 +271,9 @@ class DegiroApi {
     // Normally, if you want to know the account cash movements it's more clear to see just the
     // real operations because Degiro adds its own operations regarding flatex bank account.
     if (!showDegiroMovements) {
-      movements = movements.where((m) => m.movementType != MovementType.flatexCashSweep).toList();
+      movements = movements
+          .where((m) => m.movementType != MovementType.flatexCashSweep)
+          .toList();
     }
 
     return movements;

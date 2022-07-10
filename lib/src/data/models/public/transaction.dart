@@ -69,7 +69,9 @@ class Transaction {
     return Transaction(
       id: map['id'].toInt() ?? invalidIntValue,
       productId: map['productId']?.toInt() ?? invalidIntValue,
-      productInfo: map['productInfo'] != null ? ProductInfo.fromMap(map['productInfo']) : null,
+      productInfo: map['productInfo'] != null
+          ? ProductInfo.fromMap(map['productInfo'])
+          : null,
       date: DateTime.parse(map['date']),
       buysell: map['buysell'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
@@ -81,16 +83,21 @@ class Transaction {
       fxRate: map['fxRate']?.toDouble() ?? 0.0,
       nettFxRate: map['nettFxRate']?.toDouble() ?? 0.0,
       grossFxRate: map['grossFxRate']?.toDouble() ?? 0.0,
-      autoFxFeeInBaseCurrency: map['autoFxFeeInBaseCurrency']?.toDouble() ?? 0.0,
+      autoFxFeeInBaseCurrency:
+          map['autoFxFeeInBaseCurrency']?.toDouble() ?? 0.0,
       totalInBaseCurrency: map['totalInBaseCurrency']?.toDouble() ?? 0.0,
       feeInBaseCurrency: map['feeInBaseCurrency']?.toDouble() ?? 0.0,
-      totalFeesInBaseCurrency: map['totalFeesInBaseCurrency']?.toDouble() ?? 0.0,
-      totalPlusFeeInBaseCurrency: map['totalPlusFeeInBaseCurrency']?.toDouble() ?? 0.0,
-      totalPlusAllFeesInBaseCurrency: map['totalPlusAllFeesInBaseCurrency']?.toDouble() ?? 0.0,
+      totalFeesInBaseCurrency:
+          map['totalFeesInBaseCurrency']?.toDouble() ?? 0.0,
+      totalPlusFeeInBaseCurrency:
+          map['totalPlusFeeInBaseCurrency']?.toDouble() ?? 0.0,
+      totalPlusAllFeesInBaseCurrency:
+          map['totalPlusAllFeesInBaseCurrency']?.toDouble() ?? 0.0,
       transactionTypeId: map['transactionTypeId']?.toInt() ?? 0,
       tradingVenue: map['tradingVenue'] ?? '',
     );
   }
 
-  factory Transaction.fromJson(String source) => Transaction.fromMap(json.decode(source));
+  factory Transaction.fromJson(String source) =>
+      Transaction.fromMap(json.decode(source));
 }

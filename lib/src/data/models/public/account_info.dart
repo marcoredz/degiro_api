@@ -58,31 +58,32 @@ class AccountInfo {
   });
 
   factory AccountInfo.init() => AccountInfo(
-      id: invalidIntValue,
-      intAccount: invalidIntValue,
-      loggedInPersonId: invalidIntValue,
-      clientRole: '',
-      effectiveClientRole: '',
-      contractType: '',
-      username: '',
-      displayName: '',
-      email: '',
-      firstContact: _FirstContact.init(),
-      address: _Address.init(),
-      cellphoneNumber: '',
-      locale: '',
-      language: '',
-      culture: '',
-      displayLanguage: '',
-      bankAccount: _BankAccount.init(),
-      flatexBankAccount: _FlatexBankAccount.init(),
-      memberCode: '',
-      isWithdrawalAvailable: false,
-      isAllocationAvailable: false,
-      isIskClient: false,
-      isCollectivePortfolio: false,
-      isAmClientActive: false,
-      canUpgrade: false);
+        id: invalidIntValue,
+        intAccount: invalidIntValue,
+        loggedInPersonId: invalidIntValue,
+        clientRole: '',
+        effectiveClientRole: '',
+        contractType: '',
+        username: '',
+        displayName: '',
+        email: '',
+        firstContact: _FirstContact.init(),
+        address: _Address.init(),
+        cellphoneNumber: '',
+        locale: '',
+        language: '',
+        culture: '',
+        displayLanguage: '',
+        bankAccount: _BankAccount.init(),
+        flatexBankAccount: _FlatexBankAccount.init(),
+        memberCode: '',
+        isWithdrawalAvailable: false,
+        isAllocationAvailable: false,
+        isIskClient: false,
+        isCollectivePortfolio: false,
+        isAmClientActive: false,
+        canUpgrade: false,
+      );
 
   Map<String, dynamic> toMap() {
     return {
@@ -169,14 +170,15 @@ class _FirstContact {
   });
 
   factory _FirstContact.init() => _FirstContact(
-      firstName: '',
-      lastName: '',
-      displayName: '',
-      nationality: '',
-      gender: '',
-      dateOfBirth: '',
-      placeOfBirth: '',
-      countryOfBirth: '');
+        firstName: '',
+        lastName: '',
+        displayName: '',
+        nationality: '',
+        gender: '',
+        dateOfBirth: '',
+        placeOfBirth: '',
+        countryOfBirth: '',
+      );
 
   Map<String, dynamic> toMap() {
     return {
@@ -220,8 +222,13 @@ class _Address {
     required this.country,
   });
 
-  factory _Address.init() =>
-      _Address(streetAddress: '', streetAddressNumber: '', zip: '', city: '', country: '');
+  factory _Address.init() => _Address(
+        streetAddress: '',
+        streetAddressNumber: '',
+        zip: '',
+        city: '',
+        country: '',
+      );
 
   Map<String, dynamic> toMap() {
     return {
@@ -262,8 +269,12 @@ class _BankAccount {
     required this.status,
   });
 
-  factory _BankAccount.init() =>
-      _BankAccount(bankAccountId: invalidIntValue, bic: '', iban: '', status: '');
+  factory _BankAccount.init() => _BankAccount(
+        bankAccountId: invalidIntValue,
+        bic: '',
+        iban: '',
+        status: '',
+      );
 
   Map<String, dynamic> toMap() {
     return {

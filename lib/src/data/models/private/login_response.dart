@@ -28,7 +28,8 @@ class LoginResponse {
     );
   }
 
-  factory LoginResponse.fromJson(String source) => LoginResponse.fromMap(json.decode(source));
+  factory LoginResponse.fromJson(String source) =>
+      LoginResponse.fromMap(json.decode(source));
 
   @override
   String toString() {

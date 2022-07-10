@@ -77,5 +77,6 @@ class ProductInfo {
 
   String toJson() => json.encode(toMap());
 
-  factory ProductInfo.fromJson(String source) => ProductInfo.fromMap(json.decode(source));
+  factory ProductInfo.fromJson(String source) =>
+      ProductInfo.fromMap(json.decode(source));
 }

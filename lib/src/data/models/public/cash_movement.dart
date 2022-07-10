@@ -57,7 +57,8 @@ class CashMovement {
     );
   }
 
-  factory CashMovement.fromJson(String source) => CashMovement.fromMap(json.decode(source));
+  factory CashMovement.fromJson(String source) =>
+      CashMovement.fromMap(json.decode(source));
 }
 
 class _Balance {
