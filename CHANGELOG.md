@@ -15,3 +15,8 @@
 ### 0.2.1
 
 - Fixes to pass static analysis
+
+### 0.3.0
+
+- New 'isLoggedIn' getter to know if the user has logged in
+- Rework of the 'instance' getter to make it really null safety
