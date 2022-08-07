@@ -21,6 +21,7 @@ Future<void> libraryTest() async {
 
   try {
     await degiro.login();
+    print(DegiroApi.instance.isLoggedIn ? 'yes' : 'no');
 
     print(degiro.sessionId);
 
@@ -41,6 +42,7 @@ Future<void> libraryTest() async {
     }
 
     await degiro.logout();
+    print(DegiroApi.instance.isLoggedIn ? 'yes' : 'no');
     // print('Logged out');
   } on DegiroApiError catch (e) {
     print(e.message);

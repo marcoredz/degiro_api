@@ -5,7 +5,7 @@ import 'package:degiro_api/src/utils/process_portfolio.dart';
 
 class DegiroApi {
   late Repository _repository;
-  static late DegiroApi _instance;
+  static DegiroApi? _instance;
 
   String _sessionId = '';
   String _username = '';
@@ -13,8 +13,9 @@ class DegiroApi {
   AccountInfo accountInfo = AccountInfo.init();
 
   String get sessionId => _sessionId;
+  bool get isLoggedIn => _sessionId.isNotEmpty;
 
-  static DegiroApi get instance => _instance;
+  static DegiroApi get instance => _instance ?? DegiroApi._default();
 
   /// Access to Degiro with normal credentials.
   DegiroApi.fromCredentials(String username, String password) {
@@ -29,6 +30,12 @@ class DegiroApi {
   DegiroApi.fromSession(String sessionId) {
     _sessionId = sessionId;
     _init();
+  }
+
+  // Default contructor with the purpose of
+  // using the 'instance' getter not nullable
+  DegiroApi._default() {
+    _instance = this;
   }
 
   _init() {
@@ -88,7 +95,9 @@ class DegiroApi {
 
     result.when(
       (error) => throw error..methodName = 'logout',
-      (success) => null,
+      (success) {
+        _sessionId = '';
+      },
     );
   }
 

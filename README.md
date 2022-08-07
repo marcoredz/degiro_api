@@ -17,6 +17,9 @@ Since it is just a wrapper, consider these APIs unofficial.
 final degiro = DegiroApi.fromCredentials('username', 'password');
 
 try {
+    // Gets the current instance and know if we are logged
+    print(DegiroApi.instance.isLoggedIn ? 'yes' : 'no');
+
     // Logins with credentials provided and creates the session
     await degiro.login();
 
