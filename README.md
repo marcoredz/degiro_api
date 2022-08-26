@@ -63,9 +63,6 @@ try {
 - searchProducts
 - cashMovements
 
-## TO DO
-- [ ] Filter open & closed positions by parameter in 'portfolioPositions' method
-
 ## Contributing
 
 Since this package is maintained by one person, help is appreciated so feel free to open issues & pull requests on GitHub repository.

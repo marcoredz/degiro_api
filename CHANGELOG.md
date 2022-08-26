@@ -20,3 +20,8 @@
 
 - New 'isLoggedIn' getter to know if the user has logged in
 - Rework of the 'instance' getter to make it really null safety
+
+### 0.3.1
+- Update APIs documentation
+- Fix CHANGELOG file
+- Rename 'showDegiroMovements' parameter of 'cashMovements' method in 'showFlatexMovements'

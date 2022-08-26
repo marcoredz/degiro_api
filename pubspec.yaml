@@ -1,6 +1,6 @@
 name: degiro_api
 description: Unofficial Degiro APIs. A Dart wrapper to use the Degiro APIs in a simple way.
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/marcoredz/degiro_api
 repository: https://github.com/marcoredz/degiro_api
 
