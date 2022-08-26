@@ -148,7 +148,7 @@ class DegiroApi {
     );
 
     return result.when(
-      (error) => throw error..methodName = "productInfo",
+      (error) => throw error..methodName = 'productInfo',
       (_productInfo) => _productInfo.first,
     );
   }
@@ -164,7 +164,7 @@ class DegiroApi {
     List<ProductInfo> productInfos = [];
 
     result.when(
-      (error) => throw error..methodName = "productInfos",
+      (error) => throw error..methodName = 'productInfos',
       (_productInfos) {
         productInfos = _productInfos;
       },
@@ -266,7 +266,7 @@ class DegiroApi {
     List<CashMovement> movements = [];
 
     movements = result.when(
-      (error) => throw error..methodName = "cashMovements",
+      (error) => throw error..methodName = 'cashMovements',
       (_movements) => _movements,
     );
 

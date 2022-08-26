@@ -26,11 +26,11 @@ class CashMovement {
 
   MovementType get movementType {
     switch (type) {
-      case "TRANSACTION":
+      case 'TRANSACTION':
         return MovementType.transaction;
-      case "CASH_TRANSACTION":
+      case 'CASH_TRANSACTION':
         return MovementType.cashTransaction;
-      case "FLATEX_CASH_SWEEP":
+      case 'FLATEX_CASH_SWEEP':
         return MovementType.flatexCashSweep;
       default:
         return MovementType.transaction;
