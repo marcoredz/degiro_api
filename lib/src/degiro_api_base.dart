@@ -147,16 +147,10 @@ class DegiroApi {
       [id],
     );
 
-    late ProductInfo productInfo;
-
-    result.when(
+    return result.when(
       (error) => throw error..methodName = "productInfo",
-      (_productInfo) {
-        productInfo = _productInfo.first;
-      },
+      (_productInfo) => _productInfo.first,
     );
-
-    return productInfo;
   }
 
   /// Gets multiple products infos based on multiple ids.
@@ -256,7 +250,7 @@ class DegiroApi {
   Future<List<CashMovement>> cashMovements({
     DateTime? fromDate,
     DateTime? toDate,
-    bool showDegiroMovements = false,
+    bool showFlatexMovements = false,
   }) async {
     // Setting default filter to last month
     fromDate ??= DateTime.now().subtract(Duration(days: 31));
@@ -276,10 +270,10 @@ class DegiroApi {
       (_movements) => _movements,
     );
 
-    // As default 'showDegiroMovements' is set to false.
+    // As default 'showFlatexMovements' is set to false.
     // Normally, if you want to know the account cash movements it's more clear to see just the
     // real operations because Degiro adds its own operations regarding flatex bank account.
-    if (!showDegiroMovements) {
+    if (!showFlatexMovements) {
       movements = movements
           .where((m) => m.movementType != MovementType.flatexCashSweep)
           .toList();
