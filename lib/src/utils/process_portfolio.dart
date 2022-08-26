@@ -1,5 +1,9 @@
 import 'package:degiro_api/src/data/models/public/portfolio_position.dart';
 
+/// Process portfolio positions coming from Degiro APIs to map in a list of
+/// [PortfolioPosition] type, simplifying use.
+///
+/// Add the position only if it is a product, excluding cash position.
 List<PortfolioPosition> processPortfolio(List positions) {
   List<PortfolioPosition> result = [];
 

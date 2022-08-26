@@ -7,6 +7,8 @@ import 'package:degiro_api/src/data/repository/interface.dart';
 import 'package:dio/dio.dart';
 import 'package:multiple_result/multiple_result.dart';
 
+/// Main DegiroApi repository, using Dio as http client
+/// Contains the direct requests to Degiro APIs
 class Repository implements IRepository {
   late Dio _dio;
 
@@ -15,8 +17,8 @@ class Repository implements IRepository {
     return _instance;
   }
 
+  /// Dio client configuration
   Repository._internal() {
-    // Dio client configuration
     _dio = Dio(BaseOptions(baseUrl: baseUrl));
     _dio.interceptors.add(DegiroInterceptors());
   }

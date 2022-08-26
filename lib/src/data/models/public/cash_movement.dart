@@ -2,6 +2,14 @@ import 'dart:convert';
 
 import 'package:degiro_api/src/config/constants.dart';
 
+/// transaction: product transactions (buy or sell of products)
+///
+/// cashTransaction:
+///   - transaction fees
+///   - deposits/withdrawals
+///   - Flatex interests
+///
+/// flatexCashSweep: Degiro Flatex account cash sweeps
 enum MovementType { transaction, cashTransaction, flatexCashSweep }
 
 class CashMovement {

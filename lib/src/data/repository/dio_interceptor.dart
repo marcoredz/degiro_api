@@ -2,6 +2,10 @@ import 'package:degiro_api/src/config/configs.dart';
 import 'package:degiro_api/src/degiro_api_base.dart';
 import 'package:dio/dio.dart';
 
+/// Main Dio interceptor of DegiroApi
+/// Goals:
+/// - assert user must be logged in to perform all requests except
+///   login and clientInfo requests
 class DegiroInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

@@ -1,5 +1,6 @@
 import 'package:degiro_api/src/data/models/public/product_info.dart';
 
+/// DegiroApi class to store portfolio position infos
 class PortfolioPosition {
   String id = '';
   ProductInfo? productInfo;

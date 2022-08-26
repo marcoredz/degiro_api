@@ -2,6 +2,7 @@ import 'package:degiro_api/src/config/configs.dart';
 import 'package:degiro_api/src/data/models/models.dart';
 import 'package:multiple_result/multiple_result.dart';
 
+/// Main DegiroApi repository interface
 abstract class IRepository {
   Future<Result<DegiroApiError, LoginResponse>> loginRequest(
     String username,
