@@ -13,9 +13,7 @@ class Repository implements IRepository {
   late Dio _dio;
 
   static final Repository _instance = Repository._internal();
-  factory Repository() {
-    return _instance;
-  }
+  factory Repository() => _instance;
 
   /// Dio client configuration
   Repository._internal() {
@@ -70,11 +68,11 @@ class Repository implements IRepository {
       return Success(AccountInfo.fromMap(response.data['data']));
     } on DioError catch (e) {
       if (e.response != null) {
-        final degiroStatusText =
-            (e.response?.data['errors'] as List).first['text'] ?? '';
+        final errors = List.from(e.response!.data['errors'] ?? []);
         return Error(
           DegiroApiError(
-            message: degiroStatusText,
+            // Getting Degiro status text
+            message: errors.isNotEmpty ? errors.first['text'] : '',
             code: e.response?.statusCode,
           ),
         );
@@ -223,10 +221,11 @@ class Repository implements IRepository {
       return Success(productsJson.map((e) => ProductInfo.fromMap(e)).toList());
     } on DioError catch (e) {
       if (e.response != null) {
-        final errors = List.from(e.response?.data['errors']);
+        final errors = List.from(e.response!.data['errors'] ?? []);
         return Error(
           DegiroApiError(
-            message: errors.first['text'],
+            // Getting Degiro status text
+            message: errors.isNotEmpty ? errors.first['text'] : '',
             code: e.response?.statusCode,
           ),
         );
