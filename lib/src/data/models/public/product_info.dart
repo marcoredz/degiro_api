@@ -15,7 +15,7 @@ class ProductInfo {
   String exchangeId;
   bool onlyEodPrices;
   double closePrice;
-  DateTime closePriceDate;
+  DateTime? closePriceDate;
 
   ProductInfo({
     required this.id,
@@ -32,7 +32,7 @@ class ProductInfo {
     required this.exchangeId,
     required this.onlyEodPrices,
     required this.closePrice,
-    required this.closePriceDate,
+    this.closePriceDate,
   });
 
   Map<String, dynamic> toMap() {
@@ -71,7 +71,9 @@ class ProductInfo {
       exchangeId: map['exchangeId'] ?? '',
       onlyEodPrices: map['onlyEodPrices'] ?? false,
       closePrice: map['closePrice']?.toDouble() ?? 0.0,
-      closePriceDate: DateTime.parse(map['closePriceDate']),
+      closePriceDate: map['closePriceDate'] != null
+          ? DateTime.parse(map['closePriceDate'] as String)
+          : null,
     );
   }
 

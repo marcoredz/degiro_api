@@ -104,7 +104,9 @@ class DegiroApi {
   /// Gets the portfolio positions.
   ///
   /// [PortfolioPosition] contains the [ProductInfo] property with product infos.
-  Future<List<PortfolioPosition>> portfolioPositions() async {
+  Future<List<PortfolioPosition>> portfolioPositions({
+    bool includeCash = false,
+  }) async {
     final result = await _repository.getPortfolioPositionsRequest(
       sessionId,
       accountInfo.intAccount,
@@ -118,7 +120,7 @@ class DegiroApi {
       (error) => throw error..methodName = 'portfolioPositions',
       (_positions) async {
         try {
-          positions = processPortfolio(_positions);
+          positions = processPortfolio(_positions, includeCash);
         } on Exception catch (e) {
           throw DegiroApiError(
             message: 'Something went wrong during portfolio processing',

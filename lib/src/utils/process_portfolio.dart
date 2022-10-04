@@ -4,7 +4,7 @@ import 'package:degiro_api/src/data/models/public/portfolio_position.dart';
 /// [PortfolioPosition] type, simplifying use.
 ///
 /// Add the position only if it is a product, excluding cash position.
-List<PortfolioPosition> processPortfolio(List positions) {
+List<PortfolioPosition> processPortfolio(List positions, bool includeCash) {
   List<PortfolioPosition> result = [];
 
   for (final position in positions) {
@@ -33,7 +33,9 @@ List<PortfolioPosition> processPortfolio(List positions) {
               : newPosition.todayRealizedProductPl;
     }
 
-    if (newPosition.positionType == 'PRODUCT') result.add(newPosition);
+    if (newPosition.positionType == 'PRODUCT' || includeCash) {
+      result.add(newPosition);
+    }
   }
 
   return result;
