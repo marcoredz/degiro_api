@@ -12,7 +12,7 @@ void main() {
 }
 
 Future<void> libraryTest() async {
-  // Read credentials from file ignored in .gitignore
+  // Read credentials from file
   List<String> lines = File('./example/credentials.txt').readAsLinesSync();
   if (lines.isEmpty) return;
 
@@ -25,25 +25,30 @@ Future<void> libraryTest() async {
 
     print(degiro.sessionId);
 
-    final List<PortfolioPosition> positions = await degiro.portfolioPositions();
-    // List<Transaction> transactions = await degiro.transactions(fromDate: DateTime(2022, 4, 18));
-    // List<ProductInfo> products = await degiro.searchProducts(
-    //   searchText: 'nasdaq',
-    //   sortColumn: 'name',
-    //   sortType: 'asc',
-    // );
-    // List<CashMovement> movements = await degiro.cashMovements(
-    //   fromDate: DateTime(2022, 02, 23),
-    //   toDate: DateTime(2022, 02, 25),
-    //   showDegiroMovements: true,
-    // );
+    final List<PortfolioPosition> positions = await degiro.portfolioPositions(
+      includeCash: true,
+    );
+
     for (var e in positions) {
-      print(e.productInfo?.name);
+      print('${e.productInfo?.name} ${e.value} ${e.isOpen}');
     }
+
+    List<Transaction> transactions =
+        await degiro.transactions(fromDate: DateTime(2022, 4, 18));
+
+    List<ProductInfo> products = await degiro.searchProducts(
+      searchText: 'nasdaq',
+      sortColumn: 'name',
+      sortType: 'asc',
+    );
+    List<CashMovement> movements = await degiro.cashMovements(
+      fromDate: DateTime(2022, 02, 23),
+      toDate: DateTime(2022, 02, 25),
+      showFlatexMovements: true,
+    );
 
     await degiro.logout();
     print(DegiroApi.instance.isLoggedIn ? 'yes' : 'no');
-    // print('Logged out');
   } on DegiroApiError catch (e) {
     print(e.message);
   }
