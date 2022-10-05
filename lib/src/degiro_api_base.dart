@@ -104,6 +104,8 @@ class DegiroApi {
   /// Gets the portfolio positions.
   ///
   /// [PortfolioPosition] contains the [ProductInfo] property with product infos.
+  ///
+  /// includeCash: if true, the method adds the account cash position to the result.
   Future<List<PortfolioPosition>> portfolioPositions({
     bool includeCash = false,
   }) async {
