@@ -11,4 +11,6 @@ class PortfolioPosition {
   double breakEvenPrice = 0;
   double realizedProductPl = 0;
   double todayRealizedProductPl = 0;
+
+  bool get isOpen => value != 0;
 }
