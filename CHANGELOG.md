@@ -28,3 +28,6 @@ _true_ if the portfolio position is currently open on the market otherwise _fals
 - New 'includeCash' named parameter for portfolioPosition method: <br>
 if _true_, the method adds the account cash position to the result. _false_ as default.
 - Internal code improvements and update documentation
+
+### 0.4.1
+- Change license from Apache 2 to MIT
