@@ -44,7 +44,6 @@ try {
 ## Available methods
 
 ### Constructors
-
 - DegiroApi.fromCredentials(String username, String password)
 
   creates the degiro instance based on the username & password. **NOTE**: 2FA is in roadmap
@@ -53,7 +52,6 @@ try {
   creates the degiro instance based on the jsessionid. It can be taken from the browser dev tool accessing network request. Every request to a Degiro API must contain a sessionId to be perfomed.
 
 ### Methods
-
 - login
 - logout
 - portfolioPositions
@@ -64,5 +62,10 @@ try {
 - cashMovements
 
 ## Contributing
-
 Since this package is maintained by one person, help is appreciated so feel free to open issues & pull requests on GitHub repository.
+
+### Freezed code generation
+Once you forked the project, you have to execute the dart build runner command to generate *.freezed and *.g files.
+```console
+dart run build_runner build --delete-conflicting-outputs 
+```
