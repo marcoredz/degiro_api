@@ -20,9 +20,10 @@ linter:
      - require_trailing_commas
      - prefer_single_quotes
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
 
 # For more information about the core and recommended set of lints, see
 # https://dart.dev/go/core-lints
