@@ -65,7 +65,7 @@ class Repository implements IRepository {
         queryParameters: {'sessionId': sessionId},
       );
 
-      return Success(AccountInfo.fromMap(response.data['data']));
+      return Success(AccountInfo.fromJson(response.data['data']));
     } on DioError catch (e) {
       if (e.response != null) {
         final errors = List.from(e.response!.data['errors'] ?? []);
@@ -145,7 +145,7 @@ class Repository implements IRepository {
       final data = Map<String, dynamic>.from(response.data['data']);
 
       return Success(
-        data.entries.map((e) => ProductInfo.fromMap(e.value)).toList(),
+        data.entries.map((e) => ProductInfo.fromJson(e.value)).toList(),
       );
     } on DioError catch (e) {
       return Error(
@@ -180,7 +180,7 @@ class Repository implements IRepository {
 
       final data = List.from(response.data['data']);
 
-      return Success(data.map((e) => Transaction.fromMap(e)).toList());
+      return Success(data.map((e) => Transaction.fromJson(e)).toList());
     } on DioError catch (e) {
       return Error(
         DegiroApiError(message: e.message, code: e.response?.statusCode),
@@ -195,7 +195,7 @@ class Repository implements IRepository {
     String sessionId,
     int intAccount,
     String searchText,
-    int limit,
+    int? limit,
     int offset,
     int productType, [
     String? sortColumn,
@@ -206,7 +206,7 @@ class Repository implements IRepository {
         productSearchUrl,
         queryParameters: {
           'searchText': searchText,
-          'limit': limit,
+          if (limit != null) 'limit': limit,
           'offset': offset,
           'intAccount': intAccount,
           'sessionId': sessionId,
@@ -218,7 +218,7 @@ class Repository implements IRepository {
 
       final productsJson = List.from(response.data['products'] ?? []);
 
-      return Success(productsJson.map((e) => ProductInfo.fromMap(e)).toList());
+      return Success(productsJson.map((e) => ProductInfo.fromJson(e)).toList());
     } on DioError catch (e) {
       if (e.response != null) {
         final errors = List.from(e.response!.data['errors'] ?? []);
@@ -262,7 +262,7 @@ class Repository implements IRepository {
 
       final data = List.from(response.data['data']['cashMovements']);
 
-      return Success(data.map((e) => CashMovement.fromMap(e)).toList());
+      return Success(data.map((e) => CashMovement.fromJson(e)).toList());
     } on DioError catch (e) {
       return Error(
         DegiroApiError(message: e.message, code: e.response?.statusCode),

@@ -1,6 +1,8 @@
-import 'dart:convert';
+import 'package:degiro_api/src/config/configs.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:degiro_api/src/config/constants.dart';
+part 'cash_movement.freezed.dart';
+part 'cash_movement.g.dart';
 
 /// transaction: product transactions (buy or sell of products)
 ///
@@ -12,17 +14,9 @@ import 'package:degiro_api/src/config/constants.dart';
 /// flatexCashSweep: Degiro Flatex account cash sweeps
 enum MovementType { transaction, cashTransaction, flatexCashSweep }
 
-class CashMovement {
-  final DateTime date;
-  final DateTime valueDate;
-  final int id;
-  final int? productId;
-  final String? orderdId;
-  final String description;
-  final String currency;
-  final double change;
-  final _Balance balance;
-  final String type;
+@freezed
+class CashMovement with _$CashMovement {
+  const CashMovement._();
 
   MovementType get movementType {
     switch (type) {
@@ -37,54 +31,38 @@ class CashMovement {
     }
   }
 
-  CashMovement({
-    required this.date,
-    required this.valueDate,
-    required this.id,
-    this.productId,
-    this.orderdId,
-    required this.description,
-    required this.currency,
-    required this.change,
-    required this.balance,
-    required this.type,
-  });
+  const factory CashMovement({
+    required DateTime date,
+    required DateTime valueDate,
+    @Default(invalidIntValue) int id,
+    @Default(invalidIntValue) int? productId,
+    String? orderdId,
+    @Default('') String description,
+    @Default('') String currency,
+    @Default(0) double change,
+    _Balance? balance,
+    @Default('') String type,
+  }) = _CashMovement;
 
-  factory CashMovement.fromMap(Map<String, dynamic> map) {
-    return CashMovement(
-      date: DateTime.parse(map['date']),
-      valueDate: DateTime.parse(map['valueDate']),
-      id: map['id']?.toInt() ?? invalidIntValue,
-      productId: map['productId']?.toInt(),
-      orderdId: map['orderdId'],
-      description: map['description'] ?? '',
-      currency: map['currency'] ?? '',
-      change: map['change']?.toDouble() ?? 0.0,
-      balance: _Balance.fromMap(map['balance']),
-      type: map['type'] ?? '',
-    );
-  }
-
-  factory CashMovement.fromJson(String source) =>
-      CashMovement.fromMap(json.decode(source));
+  factory CashMovement.fromJson(Map<String, Object?> json) =>
+      _$CashMovementFromJson(json);
 }
 
+@JsonSerializable()
 class _Balance {
+  @JsonKey(defaultValue: 0)
   final double unsettledCash;
+  @JsonKey(defaultValue: 0)
   final double flatexCash;
+  @JsonKey(defaultValue: 0)
   final double total;
 
-  _Balance({
+  const _Balance({
     required this.unsettledCash,
     required this.flatexCash,
     required this.total,
   });
 
-  factory _Balance.fromMap(Map<String, dynamic> map) {
-    return _Balance(
-      unsettledCash: map['unsettledCash']?.toDouble() ?? 0.0,
-      flatexCash: map['flatexCash']?.toDouble() ?? 0.0,
-      total: map['total']?.toDouble() ?? 0.0,
-    );
-  }
+  factory _Balance.fromJson(Map<String, Object?> json) =>
+      _$BalanceFromJson(json);
 }

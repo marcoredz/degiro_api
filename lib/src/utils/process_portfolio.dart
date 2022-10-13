@@ -8,29 +8,31 @@ List<PortfolioPosition> processPortfolio(List positions, bool includeCash) {
   List<PortfolioPosition> result = [];
 
   for (final position in positions) {
-    final newPosition = PortfolioPosition()..id = position['id'] ?? '';
+    PortfolioPosition newPosition = PortfolioPosition(id: position['id'] ?? '');
     for (final prop in position['value']) {
-      newPosition.positionType = prop['name'] == 'positionType'
-          ? prop['value']
-          : newPosition.positionType;
-      newPosition.size =
-          prop['name'] == 'size' ? prop['value'].toInt() : newPosition.size;
-      newPosition.price = prop['name'] == 'price'
-          ? prop['value'].toDouble()
-          : newPosition.price;
-      newPosition.value = prop['name'] == 'value'
-          ? prop['value'].toDouble()
-          : newPosition.value;
-      newPosition.breakEvenPrice = prop['name'] == 'breakEvenPrice'
-          ? prop['value'].toDouble()
-          : newPosition.breakEvenPrice;
-      newPosition.realizedProductPl = prop['name'] == 'realizedProductPl'
-          ? prop['value'].toDouble()
-          : newPosition.realizedProductPl;
-      newPosition.todayRealizedProductPl =
-          prop['name'] == 'todayRealizedProductPl'
-              ? prop['value'].toDouble()
-              : newPosition.todayRealizedProductPl;
+      newPosition = newPosition.copyWith(
+        positionType: prop['name'] == 'positionType'
+            ? prop['value']
+            : newPosition.positionType,
+        size: prop['name'] == 'size'
+            ? (prop['value'] as num? ?? 0).toInt()
+            : newPosition.size,
+        price: prop['name'] == 'price'
+            ? (prop['value'] as num? ?? 0).toDouble()
+            : newPosition.price,
+        value: prop['name'] == 'value'
+            ? (prop['value'] as num? ?? 0).toDouble()
+            : newPosition.value,
+        breakEvenPrice: prop['name'] == 'breakEvenPrice'
+            ? (prop['value'] as num? ?? 0).toDouble()
+            : newPosition.value,
+        realizedProductPl: prop['name'] == 'realizedProductPl'
+            ? (prop['value'] as num? ?? 0).toDouble()
+            : newPosition.value,
+        todayRealizedProductPl: prop['name'] == 'todayRealizedProductPl'
+            ? (prop['value'] as num? ?? 0).toDouble()
+            : newPosition.value,
+      );
     }
 
     if (newPosition.positionType == 'PRODUCT' || includeCash) {

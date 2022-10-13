@@ -1,61 +1,38 @@
-import 'dart:convert';
-
 import 'package:degiro_api/src/config/constants.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AccountInfo {
-  final int id;
-  final int intAccount;
-  final int loggedInPersonId;
-  final String clientRole;
-  final String effectiveClientRole;
-  final String contractType;
-  final String username;
-  final String displayName;
-  final String email;
-  final _FirstContact firstContact;
-  final _Address address;
-  final String cellphoneNumber;
-  final String locale;
-  final String language;
-  final String culture;
-  final String displayLanguage;
-  final _BankAccount bankAccount;
-  final _FlatexBankAccount flatexBankAccount;
-  final String memberCode;
-  final bool isWithdrawalAvailable;
-  final bool isAllocationAvailable;
-  final bool isIskClient;
-  final bool isCollectivePortfolio;
-  final bool isAmClientActive;
-  final bool canUpgrade;
+part 'account_info.freezed.dart';
+part 'account_info.g.dart';
 
-  AccountInfo({
-    required this.id,
-    required this.intAccount,
-    required this.loggedInPersonId,
-    required this.clientRole,
-    required this.effectiveClientRole,
-    required this.contractType,
-    required this.username,
-    required this.displayName,
-    required this.email,
-    required this.firstContact,
-    required this.address,
-    required this.cellphoneNumber,
-    required this.locale,
-    required this.language,
-    required this.culture,
-    required this.displayLanguage,
-    required this.bankAccount,
-    required this.flatexBankAccount,
-    required this.memberCode,
-    required this.isWithdrawalAvailable,
-    required this.isAllocationAvailable,
-    required this.isIskClient,
-    required this.isCollectivePortfolio,
-    required this.isAmClientActive,
-    required this.canUpgrade,
-  });
+@freezed
+class AccountInfo with _$AccountInfo {
+  const factory AccountInfo({
+    @Default(invalidIntValue) int id,
+    @Default(invalidIntValue) int intAccount,
+    @Default(invalidIntValue) int loggedInPersonId,
+    @Default('') String clientRole,
+    @Default('') String effectiveClientRole,
+    @Default('') String contractType,
+    @Default('') String username,
+    @Default('') String displayName,
+    @Default('') String email,
+    _FirstContact? firstContact,
+    _Address? address,
+    @Default('') String cellphoneNumber,
+    @Default('') String locale,
+    @Default('') String language,
+    @Default('') String culture,
+    @Default('') String displayLanguage,
+    _BankAccount? bankAccount,
+    _FlatexBankAccount? flatexBankAccount,
+    @Default('') String memberCode,
+    @Default(false) bool isWithdrawalAvailable,
+    @Default(false) bool isAllocationAvailable,
+    @Default(false) bool isIskClient,
+    @Default(false) bool isCollectivePortfolio,
+    @Default(false) bool isAmClientActive,
+    @Default(false) bool canUpgrade,
+  }) = _AccountInfo;
 
   factory AccountInfo.init() => AccountInfo(
         id: invalidIntValue,
@@ -85,77 +62,27 @@ class AccountInfo {
         canUpgrade: false,
       );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'intAccount': intAccount,
-      'loggedInPersonId': loggedInPersonId,
-      'clientRole': clientRole,
-      'effectiveClientRole': effectiveClientRole,
-      'contractType': contractType,
-      'username': username,
-      'displayName': displayName,
-      'email': email,
-      'firstContact': firstContact.toMap(),
-      'address': address.toMap(),
-      'cellphoneNumber': cellphoneNumber,
-      'locale': locale,
-      'language': language,
-      'culture': culture,
-      'displayLanguage': displayLanguage,
-      'bankAccount': bankAccount.toMap(),
-      'flatexBankAccount': flatexBankAccount.toMap(),
-      'memberCode': memberCode,
-      'isWithdrawalAvailable': isWithdrawalAvailable,
-      'isAllocationAvailable': isAllocationAvailable,
-      'isIskClient': isIskClient,
-      'isCollectivePortfolio': isCollectivePortfolio,
-      'isAmClientActive': isAmClientActive,
-      'canUpgrade': canUpgrade,
-    };
-  }
-
-  factory AccountInfo.fromMap(Map<String, dynamic> map) {
-    return AccountInfo(
-      id: map['id']?.toInt() ?? invalidIntValue,
-      intAccount: map['intAccount']?.toInt() ?? invalidIntValue,
-      loggedInPersonId: map['loggedInPersonId']?.toInt() ?? invalidIntValue,
-      clientRole: map['clientRole'] ?? '',
-      effectiveClientRole: map['effectiveClientRole'] ?? '',
-      contractType: map['contractType'] ?? '',
-      username: map['username'] ?? '',
-      displayName: map['displayName'] ?? '',
-      email: map['email'] ?? '',
-      firstContact: _FirstContact.fromMap(map['firstContact']),
-      address: _Address.fromMap(map['address']),
-      cellphoneNumber: map['cellphoneNumber'] ?? '',
-      locale: map['locale'] ?? '',
-      language: map['language'] ?? '',
-      culture: map['culture'] ?? '',
-      displayLanguage: map['displayLanguage'] ?? '',
-      bankAccount: _BankAccount.fromMap(map['bankAccount']),
-      flatexBankAccount: _FlatexBankAccount.fromMap(map['flatexBankAccount']),
-      memberCode: map['memberCode'] ?? '',
-      isWithdrawalAvailable: map['isWithdrawalAvailable'] ?? false,
-      isAllocationAvailable: map['isAllocationAvailable'] ?? false,
-      isIskClient: map['isIskClient'] ?? false,
-      isCollectivePortfolio: map['isCollectivePortfolio'] ?? false,
-      isAmClientActive: map['isAmClientActive'] ?? false,
-      canUpgrade: map['canUpgrade'] ?? false,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
+  factory AccountInfo.fromJson(Map<String, dynamic> json) =>
+      _$AccountInfoFromJson(json);
 }
 
+@JsonSerializable()
 class _FirstContact {
+  @JsonKey(defaultValue: '')
   final String firstName;
+  @JsonKey(defaultValue: '')
   final String lastName;
+  @JsonKey(defaultValue: '')
   final String displayName;
+  @JsonKey(defaultValue: '')
   final String nationality;
+  @JsonKey(defaultValue: '')
   final String gender;
+  @JsonKey(defaultValue: '')
   final String dateOfBirth;
+  @JsonKey(defaultValue: '')
   final String placeOfBirth;
+  @JsonKey(defaultValue: '')
   final String countryOfBirth;
 
   _FirstContact({
@@ -180,38 +107,23 @@ class _FirstContact {
         countryOfBirth: '',
       );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'firstName': firstName,
-      'lastName': lastName,
-      'displayName': displayName,
-      'nationality': nationality,
-      'gender': gender,
-      'dateOfBirth': dateOfBirth,
-      'placeOfBirth': placeOfBirth,
-      'countryOfBirth': countryOfBirth,
-    };
-  }
+  factory _FirstContact.fromJson(Map<String, dynamic> json) =>
+      _$FirstContactFromJson(json);
 
-  factory _FirstContact.fromMap(Map<String, dynamic> map) {
-    return _FirstContact(
-      firstName: map['firstName'] ?? '',
-      lastName: map['lastName'] ?? '',
-      displayName: map['displayName'] ?? '',
-      nationality: map['nationality'] ?? '',
-      gender: map['gender'] ?? '',
-      dateOfBirth: map['dateOfBirth'] ?? '',
-      placeOfBirth: map['placeOfBirth'] ?? '',
-      countryOfBirth: map['countryOfBirth'] ?? '',
-    );
-  }
+  Map<String, dynamic> toJson() => _$FirstContactToJson(this);
 }
 
+@JsonSerializable()
 class _Address {
+  @JsonKey(defaultValue: '')
   final String streetAddress;
+  @JsonKey(defaultValue: '')
   final String streetAddressNumber;
+  @JsonKey(defaultValue: '')
   final String zip;
+  @JsonKey(defaultValue: '')
   final String city;
+  @JsonKey(defaultValue: '')
   final String country;
 
   _Address({
@@ -230,36 +142,21 @@ class _Address {
         country: '',
       );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'streetAddress': streetAddress,
-      'streetAddressNumber': streetAddressNumber,
-      'zip': zip,
-      'city': city,
-      'country': country,
-    };
-  }
+  factory _Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
-  factory _Address.fromMap(Map<String, dynamic> map) {
-    return _Address(
-      streetAddress: map['streetAddress'] ?? '',
-      streetAddressNumber: map['streetAddressNumber'] ?? '',
-      zip: map['zip'] ?? '',
-      city: map['city'] ?? '',
-      country: map['country'] ?? '',
-    );
-  }
-
-  @override
-  String toString() {
-    return '_Address(streetAddress: $streetAddress, streetAddressNumber: $streetAddressNumber, zip: $zip, city: $city, country: $country)';
-  }
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
 }
 
+@JsonSerializable()
 class _BankAccount {
+  @JsonKey(defaultValue: invalidIntValue)
   final int bankAccountId;
+  @JsonKey(defaultValue: '')
   final String bic;
+  @JsonKey(defaultValue: '')
   final String iban;
+  @JsonKey(defaultValue: '')
   final String status;
 
   _BankAccount({
@@ -276,27 +173,17 @@ class _BankAccount {
         status: '',
       );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'bankAccountId': bankAccountId,
-      'bic': bic,
-      'iban': iban,
-      'status': status,
-    };
-  }
+  factory _BankAccount.fromJson(Map<String, dynamic> json) =>
+      _$BankAccountFromJson(json);
 
-  factory _BankAccount.fromMap(Map<String, dynamic> map) {
-    return _BankAccount(
-      bankAccountId: map['bankAccountId']?.toInt() ?? invalidIntValue,
-      bic: map['bic'] ?? '',
-      iban: map['iban'] ?? '',
-      status: map['status'] ?? '',
-    );
-  }
+  Map<String, dynamic> toJson() => _$BankAccountToJson(this);
 }
 
+@JsonSerializable()
 class _FlatexBankAccount {
+  @JsonKey(defaultValue: '')
   final String bic;
+  @JsonKey(defaultValue: '')
   final String iban;
 
   _FlatexBankAccount({
@@ -306,17 +193,8 @@ class _FlatexBankAccount {
 
   factory _FlatexBankAccount.init() => _FlatexBankAccount(bic: '', iban: '');
 
-  Map<String, dynamic> toMap() {
-    return {
-      'bic': bic,
-      'iban': iban,
-    };
-  }
+  factory _FlatexBankAccount.fromJson(Map<String, dynamic> json) =>
+      _$FlatexBankAccountFromJson(json);
 
-  factory _FlatexBankAccount.fromMap(Map<String, dynamic> map) {
-    return _FlatexBankAccount(
-      bic: map['bic'] ?? '',
-      iban: map['iban'] ?? '',
-    );
-  }
+  Map<String, dynamic> toJson() => _$FlatexBankAccountToJson(this);
 }

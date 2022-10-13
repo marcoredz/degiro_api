@@ -1,1 +1,1 @@
-int invalidIntValue = -1;
+const invalidIntValue = -1;

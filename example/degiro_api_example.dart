@@ -40,7 +40,10 @@ Future<void> libraryTest() async {
       searchText: 'nasdaq',
       sortColumn: 'name',
       sortType: 'asc',
+      limit: 10,
+      offset: 10 * 2,
     );
+
     List<CashMovement> movements = await degiro.cashMovements(
       fromDate: DateTime(2022, 02, 23),
       toDate: DateTime(2022, 02, 25),

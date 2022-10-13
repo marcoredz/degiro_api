@@ -133,10 +133,15 @@ class DegiroApi {
         // Gets product infos by ids
         final Set<String> productIds = positions.map((p) => p.id).toSet();
         final productInfos = await this.productInfos(productIds.toList());
-        for (var position in positions) {
-          position.productInfo =
-              productInfos.firstWhere((info) => info.id == position.id);
-        }
+        positions = positions
+            .map(
+              (position) => position.copyWith(
+                productInfo: productInfos.firstWhere(
+                  (info) => info.id == position.id,
+                ),
+              ),
+            )
+            .toList();
       },
     );
 
@@ -207,21 +212,29 @@ class DegiroApi {
             transactions.map((p) => p.productId.toString()).toSet();
         final productInfos = await this.productInfos(productIds.toList());
 
-        for (var transaction in transactions) {
-          transaction.productInfo = productInfos.firstWhere(
-            (info) => info.id == transaction.productId.toString(),
-          );
-        }
+        transactions = transactions
+            .map(
+              (transaction) => transaction.copyWith(
+                productInfo: productInfos.firstWhere(
+                  (info) => info.id == transaction.productId.toString(),
+                ),
+              ),
+            )
+            .toList();
       },
     );
 
     return transactions;
   }
 
-  /// Products search by product name
+  /// Products search by product name.
+  ///
+  /// Use limit and offset to paginate the result.
+  ///
+  /// Valid values for sortType are: **'asc'** and **'desc'**
   Future<List<ProductInfo>> searchProducts({
     required String searchText,
-    int limit = 5,
+    int? limit,
     int offset = 0,
     int? productType,
     String? sortColumn,
