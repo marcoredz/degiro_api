@@ -3,6 +3,10 @@
 .packages
 **/doc/api/
 
+# Auto generated files
+*.g.dart
+*.freezed.dart
+
 # Conventional directory for build outputs.
 build/
 
