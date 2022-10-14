@@ -6,9 +6,7 @@ part of 'account_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DegiroApiFirstContact _$DegiroApiFirstContactFromJson(
-        Map<String, dynamic> json) =>
-    DegiroApiFirstContact(
+FirstContact _$FirstContactFromJson(Map<String, dynamic> json) => FirstContact(
       firstName: json['firstName'] as String? ?? '',
       lastName: json['lastName'] as String? ?? '',
       displayName: json['displayName'] as String? ?? '',
@@ -19,8 +17,7 @@ DegiroApiFirstContact _$DegiroApiFirstContactFromJson(
       countryOfBirth: json['countryOfBirth'] as String? ?? '',
     );
 
-Map<String, dynamic> _$DegiroApiFirstContactToJson(
-        DegiroApiFirstContact instance) =>
+Map<String, dynamic> _$FirstContactToJson(FirstContact instance) =>
     <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
@@ -32,8 +29,7 @@ Map<String, dynamic> _$DegiroApiFirstContactToJson(
       'countryOfBirth': instance.countryOfBirth,
     };
 
-DegiroApiAddress _$DegiroApiAddressFromJson(Map<String, dynamic> json) =>
-    DegiroApiAddress(
+Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       streetAddress: json['streetAddress'] as String? ?? '',
       streetAddressNumber: json['streetAddressNumber'] as String? ?? '',
       zip: json['zip'] as String? ?? '',
@@ -41,8 +37,7 @@ DegiroApiAddress _$DegiroApiAddressFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String? ?? '',
     );
 
-Map<String, dynamic> _$DegiroApiAddressToJson(DegiroApiAddress instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'streetAddress': instance.streetAddress,
       'streetAddressNumber': instance.streetAddressNumber,
       'zip': instance.zip,
@@ -50,17 +45,14 @@ Map<String, dynamic> _$DegiroApiAddressToJson(DegiroApiAddress instance) =>
       'country': instance.country,
     };
 
-DegiroApiBankAccount _$DegiroApiBankAccountFromJson(
-        Map<String, dynamic> json) =>
-    DegiroApiBankAccount(
+BankAccount _$BankAccountFromJson(Map<String, dynamic> json) => BankAccount(
       bankAccountId: json['bankAccountId'] as int? ?? -1,
       bic: json['bic'] as String? ?? '',
       iban: json['iban'] as String? ?? '',
       status: json['status'] as String? ?? '',
     );
 
-Map<String, dynamic> _$DegiroApiBankAccountToJson(
-        DegiroApiBankAccount instance) =>
+Map<String, dynamic> _$BankAccountToJson(BankAccount instance) =>
     <String, dynamic>{
       'bankAccountId': instance.bankAccountId,
       'bic': instance.bic,
@@ -68,15 +60,13 @@ Map<String, dynamic> _$DegiroApiBankAccountToJson(
       'status': instance.status,
     };
 
-DegiroApiFlatexBankAccount _$DegiroApiFlatexBankAccountFromJson(
-        Map<String, dynamic> json) =>
-    DegiroApiFlatexBankAccount(
+FlatexBankAccount _$FlatexBankAccountFromJson(Map<String, dynamic> json) =>
+    FlatexBankAccount(
       bic: json['bic'] as String? ?? '',
       iban: json['iban'] as String? ?? '',
     );
 
-Map<String, dynamic> _$DegiroApiFlatexBankAccountToJson(
-        DegiroApiFlatexBankAccount instance) =>
+Map<String, dynamic> _$FlatexBankAccountToJson(FlatexBankAccount instance) =>
     <String, dynamic>{
       'bic': instance.bic,
       'iban': instance.iban,
@@ -95,11 +85,10 @@ _$_AccountInfo _$$_AccountInfoFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String? ?? '',
       firstContact: json['firstContact'] == null
           ? null
-          : DegiroApiFirstContact.fromJson(
-              json['firstContact'] as Map<String, dynamic>),
+          : FirstContact.fromJson(json['firstContact'] as Map<String, dynamic>),
       address: json['address'] == null
           ? null
-          : DegiroApiAddress.fromJson(json['address'] as Map<String, dynamic>),
+          : Address.fromJson(json['address'] as Map<String, dynamic>),
       cellphoneNumber: json['cellphoneNumber'] as String? ?? '',
       locale: json['locale'] as String? ?? '',
       language: json['language'] as String? ?? '',
@@ -107,11 +96,10 @@ _$_AccountInfo _$$_AccountInfoFromJson(Map<String, dynamic> json) =>
       displayLanguage: json['displayLanguage'] as String? ?? '',
       bankAccount: json['bankAccount'] == null
           ? null
-          : DegiroApiBankAccount.fromJson(
-              json['bankAccount'] as Map<String, dynamic>),
+          : BankAccount.fromJson(json['bankAccount'] as Map<String, dynamic>),
       flatexBankAccount: json['flatexBankAccount'] == null
           ? null
-          : DegiroApiFlatexBankAccount.fromJson(
+          : FlatexBankAccount.fromJson(
               json['flatexBankAccount'] as Map<String, dynamic>),
       memberCode: json['memberCode'] as String? ?? '',
       isWithdrawalAvailable: json['isWithdrawalAvailable'] as bool? ?? false,

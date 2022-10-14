@@ -29,15 +29,15 @@ mixin _$AccountInfo {
   String get username => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  DegiroApiFirstContact? get firstContact => throw _privateConstructorUsedError;
-  DegiroApiAddress? get address => throw _privateConstructorUsedError;
+  FirstContact? get firstContact => throw _privateConstructorUsedError;
+  Address? get address => throw _privateConstructorUsedError;
   String get cellphoneNumber => throw _privateConstructorUsedError;
   String get locale => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
   String get culture => throw _privateConstructorUsedError;
   String get displayLanguage => throw _privateConstructorUsedError;
-  DegiroApiBankAccount? get bankAccount => throw _privateConstructorUsedError;
-  DegiroApiFlatexBankAccount? get flatexBankAccount =>
+  BankAccount? get bankAccount => throw _privateConstructorUsedError;
+  FlatexBankAccount? get flatexBankAccount =>
       throw _privateConstructorUsedError;
   String get memberCode => throw _privateConstructorUsedError;
   bool get isWithdrawalAvailable => throw _privateConstructorUsedError;
@@ -68,15 +68,15 @@ abstract class $AccountInfoCopyWith<$Res> {
       String username,
       String displayName,
       String email,
-      DegiroApiFirstContact? firstContact,
-      DegiroApiAddress? address,
+      FirstContact? firstContact,
+      Address? address,
       String cellphoneNumber,
       String locale,
       String language,
       String culture,
       String displayLanguage,
-      DegiroApiBankAccount? bankAccount,
-      DegiroApiFlatexBankAccount? flatexBankAccount,
+      BankAccount? bankAccount,
+      FlatexBankAccount? flatexBankAccount,
       String memberCode,
       bool isWithdrawalAvailable,
       bool isAllocationAvailable,
@@ -162,11 +162,11 @@ class _$AccountInfoCopyWithImpl<$Res> implements $AccountInfoCopyWith<$Res> {
       firstContact: firstContact == freezed
           ? _value.firstContact
           : firstContact // ignore: cast_nullable_to_non_nullable
-              as DegiroApiFirstContact?,
+              as FirstContact?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as DegiroApiAddress?,
+              as Address?,
       cellphoneNumber: cellphoneNumber == freezed
           ? _value.cellphoneNumber
           : cellphoneNumber // ignore: cast_nullable_to_non_nullable
@@ -190,11 +190,11 @@ class _$AccountInfoCopyWithImpl<$Res> implements $AccountInfoCopyWith<$Res> {
       bankAccount: bankAccount == freezed
           ? _value.bankAccount
           : bankAccount // ignore: cast_nullable_to_non_nullable
-              as DegiroApiBankAccount?,
+              as BankAccount?,
       flatexBankAccount: flatexBankAccount == freezed
           ? _value.flatexBankAccount
           : flatexBankAccount // ignore: cast_nullable_to_non_nullable
-              as DegiroApiFlatexBankAccount?,
+              as FlatexBankAccount?,
       memberCode: memberCode == freezed
           ? _value.memberCode
           : memberCode // ignore: cast_nullable_to_non_nullable
@@ -244,15 +244,15 @@ abstract class _$$_AccountInfoCopyWith<$Res>
       String username,
       String displayName,
       String email,
-      DegiroApiFirstContact? firstContact,
-      DegiroApiAddress? address,
+      FirstContact? firstContact,
+      Address? address,
       String cellphoneNumber,
       String locale,
       String language,
       String culture,
       String displayLanguage,
-      DegiroApiBankAccount? bankAccount,
-      DegiroApiFlatexBankAccount? flatexBankAccount,
+      BankAccount? bankAccount,
+      FlatexBankAccount? flatexBankAccount,
       String memberCode,
       bool isWithdrawalAvailable,
       bool isAllocationAvailable,
@@ -340,11 +340,11 @@ class __$$_AccountInfoCopyWithImpl<$Res> extends _$AccountInfoCopyWithImpl<$Res>
       firstContact: firstContact == freezed
           ? _value.firstContact
           : firstContact // ignore: cast_nullable_to_non_nullable
-              as DegiroApiFirstContact?,
+              as FirstContact?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as DegiroApiAddress?,
+              as Address?,
       cellphoneNumber: cellphoneNumber == freezed
           ? _value.cellphoneNumber
           : cellphoneNumber // ignore: cast_nullable_to_non_nullable
@@ -368,11 +368,11 @@ class __$$_AccountInfoCopyWithImpl<$Res> extends _$AccountInfoCopyWithImpl<$Res>
       bankAccount: bankAccount == freezed
           ? _value.bankAccount
           : bankAccount // ignore: cast_nullable_to_non_nullable
-              as DegiroApiBankAccount?,
+              as BankAccount?,
       flatexBankAccount: flatexBankAccount == freezed
           ? _value.flatexBankAccount
           : flatexBankAccount // ignore: cast_nullable_to_non_nullable
-              as DegiroApiFlatexBankAccount?,
+              as FlatexBankAccount?,
       memberCode: memberCode == freezed
           ? _value.memberCode
           : memberCode // ignore: cast_nullable_to_non_nullable
@@ -466,9 +466,9 @@ class _$_AccountInfo implements _AccountInfo {
   @JsonKey()
   final String email;
   @override
-  final DegiroApiFirstContact? firstContact;
+  final FirstContact? firstContact;
   @override
-  final DegiroApiAddress? address;
+  final Address? address;
   @override
   @JsonKey()
   final String cellphoneNumber;
@@ -485,9 +485,9 @@ class _$_AccountInfo implements _AccountInfo {
   @JsonKey()
   final String displayLanguage;
   @override
-  final DegiroApiBankAccount? bankAccount;
+  final BankAccount? bankAccount;
   @override
-  final DegiroApiFlatexBankAccount? flatexBankAccount;
+  final FlatexBankAccount? flatexBankAccount;
   @override
   @JsonKey()
   final String memberCode;
@@ -620,15 +620,15 @@ abstract class _AccountInfo implements AccountInfo {
       final String username,
       final String displayName,
       final String email,
-      final DegiroApiFirstContact? firstContact,
-      final DegiroApiAddress? address,
+      final FirstContact? firstContact,
+      final Address? address,
       final String cellphoneNumber,
       final String locale,
       final String language,
       final String culture,
       final String displayLanguage,
-      final DegiroApiBankAccount? bankAccount,
-      final DegiroApiFlatexBankAccount? flatexBankAccount,
+      final BankAccount? bankAccount,
+      final FlatexBankAccount? flatexBankAccount,
       final String memberCode,
       final bool isWithdrawalAvailable,
       final bool isAllocationAvailable,
@@ -659,9 +659,9 @@ abstract class _AccountInfo implements AccountInfo {
   @override
   String get email;
   @override
-  DegiroApiFirstContact? get firstContact;
+  FirstContact? get firstContact;
   @override
-  DegiroApiAddress? get address;
+  Address? get address;
   @override
   String get cellphoneNumber;
   @override
@@ -673,9 +673,9 @@ abstract class _AccountInfo implements AccountInfo {
   @override
   String get displayLanguage;
   @override
-  DegiroApiBankAccount? get bankAccount;
+  BankAccount? get bankAccount;
   @override
-  DegiroApiFlatexBankAccount? get flatexBankAccount;
+  FlatexBankAccount? get flatexBankAccount;
   @override
   String get memberCode;
   @override
