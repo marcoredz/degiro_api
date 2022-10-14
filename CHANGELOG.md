@@ -35,3 +35,6 @@ if _true_, the method adds the account cash position to the result. _false_ as d
 ## 0.5.0
 - Add 'freezed' package as model handler: <br>
 DegiroApi models now have `fromJson` and `toJson` methods.
+
+### 0.5.1
+- Internal fixes: auto generated files implementation
