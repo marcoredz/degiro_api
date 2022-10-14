@@ -1,11 +1,20 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'login_response.g.dart';
+
+@JsonSerializable()
 class LoginResponse {
+  @JsonKey(defaultValue: false)
   final bool isPassCodeEnabled;
+  @JsonKey(defaultValue: '')
   final String locale;
+  @JsonKey(defaultValue: '')
   final String redirectUrl;
+  @JsonKey(defaultValue: '')
   final String sessionId;
+  @JsonKey(defaultValue: 0)
   final int status;
+  @JsonKey(defaultValue: '')
   final String statusText;
 
   LoginResponse({
@@ -17,19 +26,10 @@ class LoginResponse {
     required this.statusText,
   });
 
-  factory LoginResponse.fromMap(Map<String, dynamic> map) {
-    return LoginResponse(
-      isPassCodeEnabled: map['isPassCodeEnabled'] ?? false,
-      locale: map['locale'] ?? '',
-      redirectUrl: map['redirectUrl'] ?? '',
-      sessionId: map['sessionId'] ?? '',
-      status: map['status'] ?? 0,
-      statusText: map['statusText'] ?? '',
-    );
-  }
+  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseFromJson(json);
 
-  factory LoginResponse.fromJson(String source) =>
-      LoginResponse.fromMap(json.decode(source));
+  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 
   @override
   String toString() {

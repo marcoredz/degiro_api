@@ -37,7 +37,7 @@ class Repository implements IRepository {
         },
       );
 
-      return Success(LoginResponse.fromMap(response.data));
+      return Success(LoginResponse.fromJson(response.data));
     } on DioError catch (e) {
       if (e.response != null) {
         final degiroStatusText = e.response?.data['statusText'] ?? '';
