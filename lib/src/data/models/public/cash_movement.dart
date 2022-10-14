@@ -40,7 +40,7 @@ class CashMovement with _$CashMovement {
     @Default('') String description,
     @Default('') String currency,
     @Default(0) double change,
-    _Balance? balance,
+    CashMovementBalance? balance,
     @Default('') String type,
   }) = _CashMovement;
 
@@ -49,7 +49,7 @@ class CashMovement with _$CashMovement {
 }
 
 @JsonSerializable()
-class _Balance {
+class CashMovementBalance {
   @JsonKey(defaultValue: 0)
   final double unsettledCash;
   @JsonKey(defaultValue: 0)
@@ -57,12 +57,12 @@ class _Balance {
   @JsonKey(defaultValue: 0)
   final double total;
 
-  const _Balance({
+  const CashMovementBalance({
     required this.unsettledCash,
     required this.flatexCash,
     required this.total,
   });
 
-  factory _Balance.fromJson(Map<String, Object?> json) =>
-      _$BalanceFromJson(json);
+  factory CashMovementBalance.fromJson(Map<String, Object?> json) =>
+      _$CashMovementBalanceFromJson(json);
 }

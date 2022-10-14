@@ -16,15 +16,15 @@ class AccountInfo with _$AccountInfo {
     @Default('') String username,
     @Default('') String displayName,
     @Default('') String email,
-    _FirstContact? firstContact,
-    _Address? address,
+    DegiroApiFirstContact? firstContact,
+    DegiroApiAddress? address,
     @Default('') String cellphoneNumber,
     @Default('') String locale,
     @Default('') String language,
     @Default('') String culture,
     @Default('') String displayLanguage,
-    _BankAccount? bankAccount,
-    _FlatexBankAccount? flatexBankAccount,
+    DegiroApiBankAccount? bankAccount,
+    DegiroApiFlatexBankAccount? flatexBankAccount,
     @Default('') String memberCode,
     @Default(false) bool isWithdrawalAvailable,
     @Default(false) bool isAllocationAvailable,
@@ -44,15 +44,15 @@ class AccountInfo with _$AccountInfo {
         username: '',
         displayName: '',
         email: '',
-        firstContact: _FirstContact.init(),
-        address: _Address.init(),
+        firstContact: DegiroApiFirstContact.init(),
+        address: DegiroApiAddress.init(),
         cellphoneNumber: '',
         locale: '',
         language: '',
         culture: '',
         displayLanguage: '',
-        bankAccount: _BankAccount.init(),
-        flatexBankAccount: _FlatexBankAccount.init(),
+        bankAccount: DegiroApiBankAccount.init(),
+        flatexBankAccount: DegiroApiFlatexBankAccount.init(),
         memberCode: '',
         isWithdrawalAvailable: false,
         isAllocationAvailable: false,
@@ -67,7 +67,7 @@ class AccountInfo with _$AccountInfo {
 }
 
 @JsonSerializable()
-class _FirstContact {
+class DegiroApiFirstContact {
   @JsonKey(defaultValue: '')
   final String firstName;
   @JsonKey(defaultValue: '')
@@ -85,7 +85,7 @@ class _FirstContact {
   @JsonKey(defaultValue: '')
   final String countryOfBirth;
 
-  _FirstContact({
+  DegiroApiFirstContact({
     required this.firstName,
     required this.lastName,
     required this.displayName,
@@ -96,7 +96,7 @@ class _FirstContact {
     required this.countryOfBirth,
   });
 
-  factory _FirstContact.init() => _FirstContact(
+  factory DegiroApiFirstContact.init() => DegiroApiFirstContact(
         firstName: '',
         lastName: '',
         displayName: '',
@@ -107,14 +107,14 @@ class _FirstContact {
         countryOfBirth: '',
       );
 
-  factory _FirstContact.fromJson(Map<String, dynamic> json) =>
-      _$FirstContactFromJson(json);
+  factory DegiroApiFirstContact.fromJson(Map<String, dynamic> json) =>
+      _$DegiroApiFirstContactFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FirstContactToJson(this);
+  Map<String, dynamic> toJson() => _$DegiroApiFirstContactToJson(this);
 }
 
 @JsonSerializable()
-class _Address {
+class DegiroApiAddress {
   @JsonKey(defaultValue: '')
   final String streetAddress;
   @JsonKey(defaultValue: '')
@@ -126,7 +126,7 @@ class _Address {
   @JsonKey(defaultValue: '')
   final String country;
 
-  _Address({
+  DegiroApiAddress({
     required this.streetAddress,
     required this.streetAddressNumber,
     required this.zip,
@@ -134,7 +134,7 @@ class _Address {
     required this.country,
   });
 
-  factory _Address.init() => _Address(
+  factory DegiroApiAddress.init() => DegiroApiAddress(
         streetAddress: '',
         streetAddressNumber: '',
         zip: '',
@@ -142,14 +142,14 @@ class _Address {
         country: '',
       );
 
-  factory _Address.fromJson(Map<String, dynamic> json) =>
-      _$AddressFromJson(json);
+  factory DegiroApiAddress.fromJson(Map<String, dynamic> json) =>
+      _$DegiroApiAddressFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AddressToJson(this);
+  Map<String, dynamic> toJson() => _$DegiroApiAddressToJson(this);
 }
 
 @JsonSerializable()
-class _BankAccount {
+class DegiroApiBankAccount {
   @JsonKey(defaultValue: invalidIntValue)
   final int bankAccountId;
   @JsonKey(defaultValue: '')
@@ -159,42 +159,43 @@ class _BankAccount {
   @JsonKey(defaultValue: '')
   final String status;
 
-  _BankAccount({
+  DegiroApiBankAccount({
     required this.bankAccountId,
     required this.bic,
     required this.iban,
     required this.status,
   });
 
-  factory _BankAccount.init() => _BankAccount(
+  factory DegiroApiBankAccount.init() => DegiroApiBankAccount(
         bankAccountId: invalidIntValue,
         bic: '',
         iban: '',
         status: '',
       );
 
-  factory _BankAccount.fromJson(Map<String, dynamic> json) =>
-      _$BankAccountFromJson(json);
+  factory DegiroApiBankAccount.fromJson(Map<String, dynamic> json) =>
+      _$DegiroApiBankAccountFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BankAccountToJson(this);
+  Map<String, dynamic> toJson() => _$DegiroApiBankAccountToJson(this);
 }
 
 @JsonSerializable()
-class _FlatexBankAccount {
+class DegiroApiFlatexBankAccount {
   @JsonKey(defaultValue: '')
   final String bic;
   @JsonKey(defaultValue: '')
   final String iban;
 
-  _FlatexBankAccount({
+  DegiroApiFlatexBankAccount({
     required this.bic,
     required this.iban,
   });
 
-  factory _FlatexBankAccount.init() => _FlatexBankAccount(bic: '', iban: '');
+  factory DegiroApiFlatexBankAccount.init() =>
+      DegiroApiFlatexBankAccount(bic: '', iban: '');
 
-  factory _FlatexBankAccount.fromJson(Map<String, dynamic> json) =>
-      _$FlatexBankAccountFromJson(json);
+  factory DegiroApiFlatexBankAccount.fromJson(Map<String, dynamic> json) =>
+      _$DegiroApiFlatexBankAccountFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FlatexBankAccountToJson(this);
+  Map<String, dynamic> toJson() => _$DegiroApiFlatexBankAccountToJson(this);
 }

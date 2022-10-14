@@ -76,8 +76,8 @@ class DegiroApi {
 
       clientInfoResult.when(
         (error) => throw error..methodName = 'login',
-        (_accountInfo) {
-          accountInfo = _accountInfo;
+        (data) {
+          accountInfo = data;
         },
       );
     } else {
@@ -120,9 +120,9 @@ class DegiroApi {
     // which only contain an id as product reference
     await result.when(
       (error) => throw error..methodName = 'portfolioPositions',
-      (_positions) async {
+      (data) async {
         try {
-          positions = processPortfolio(_positions, includeCash);
+          positions = processPortfolio(data, includeCash);
         } on Exception catch (e) {
           throw DegiroApiError(
             message: 'Something went wrong during portfolio processing',
@@ -158,7 +158,7 @@ class DegiroApi {
 
     return result.when(
       (error) => throw error..methodName = 'productInfo',
-      (_productInfo) => _productInfo.first,
+      (productInfo) => productInfo.first,
     );
   }
 
@@ -174,8 +174,8 @@ class DegiroApi {
 
     result.when(
       (error) => throw error..methodName = 'productInfos',
-      (_productInfos) {
-        productInfos = _productInfos;
+      (data) {
+        productInfos = data;
       },
     );
 
@@ -205,8 +205,8 @@ class DegiroApi {
 
     await result.when(
       (error) => throw error..methodName = 'transactions',
-      (_transactions) async {
-        transactions = _transactions;
+      (data) async {
+        transactions = data;
         // Gets product infos by ids
         final Set<String> productIds =
             transactions.map((p) => p.productId.toString()).toSet();
@@ -255,8 +255,8 @@ class DegiroApi {
 
     result.when(
       (error) => throw error..methodName = 'searchProducts',
-      (_products) {
-        products = _products;
+      (data) {
+        products = data;
       },
     );
 
@@ -284,7 +284,7 @@ class DegiroApi {
 
     movements = result.when(
       (error) => throw error..methodName = 'cashMovements',
-      (_movements) => _movements,
+      (data) => data,
     );
 
     // As default 'showFlatexMovements' is set to false.
