@@ -38,3 +38,9 @@ DegiroApi models now have `fromJson` and `toJson` methods.
 
 ### 0.5.1
 - Internal fixes: auto generated files implementation
+### 0.5.2
+- Bugfix during portfolio positions processing for fields:
+    - `breakEvenPrice`
+    - `realizedProductPl`
+    - `todayRealizedProductPl`
+- Update .gitignore
