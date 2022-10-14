@@ -25,13 +25,13 @@ List<PortfolioPosition> processPortfolio(List positions, bool includeCash) {
             : newPosition.value,
         breakEvenPrice: prop['name'] == 'breakEvenPrice'
             ? (prop['value'] as num? ?? 0).toDouble()
-            : newPosition.value,
+            : newPosition.breakEvenPrice,
         realizedProductPl: prop['name'] == 'realizedProductPl'
             ? (prop['value'] as num? ?? 0).toDouble()
-            : newPosition.value,
+            : newPosition.realizedProductPl,
         todayRealizedProductPl: prop['name'] == 'todayRealizedProductPl'
             ? (prop['value'] as num? ?? 0).toDouble()
-            : newPosition.value,
+            : newPosition.todayRealizedProductPl,
       );
     }
 
