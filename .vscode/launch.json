@@ -5,7 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "degiro_api",
+            "name": "get_balance_overview",
+            "request": "launch",
+            "type": "dart",
+            "program": "example/examples/get_balance_overview.dart",
+            "console": "terminal"
+        },
+        {
+            "name": "main",
             "request": "launch",
             "type": "dart",
             "program": "example/degiro_api_example.dart",

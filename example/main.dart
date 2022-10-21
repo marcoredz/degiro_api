@@ -25,14 +25,6 @@ Future<void> libraryTest() async {
 
     print(degiro.sessionId);
 
-    final List<PortfolioPosition> positions = await degiro.portfolioPositions(
-      includeCash: true,
-    );
-
-    for (var e in positions) {
-      print('${e.productInfo?.name} ${e.value} ${e.isOpen}');
-    }
-
     List<Transaction> transactions =
         await degiro.transactions(fromDate: DateTime(2022, 4, 18));
 
