@@ -16,6 +16,8 @@ _$_PortfolioPosition _$$_PortfolioPositionFromJson(Map<String, dynamic> json) =>
       size: json['size'] as int? ?? 0,
       price: (json['price'] as num?)?.toDouble() ?? 0,
       value: (json['value'] as num?)?.toDouble() ?? 0,
+      plBase: (json['plBase'] as num?)?.toDouble() ?? 0,
+      todayPlBase: (json['todayPlBase'] as num?)?.toDouble() ?? 0,
       breakEvenPrice: (json['breakEvenPrice'] as num?)?.toDouble() ?? 0,
       realizedProductPl: (json['realizedProductPl'] as num?)?.toDouble() ?? 0,
       todayRealizedProductPl:
@@ -31,6 +33,8 @@ Map<String, dynamic> _$$_PortfolioPositionToJson(
       'size': instance.size,
       'price': instance.price,
       'value': instance.value,
+      'plBase': instance.plBase,
+      'todayPlBase': instance.todayPlBase,
       'breakEvenPrice': instance.breakEvenPrice,
       'realizedProductPl': instance.realizedProductPl,
       'todayRealizedProductPl': instance.todayRealizedProductPl,

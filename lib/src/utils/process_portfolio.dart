@@ -23,6 +23,16 @@ List<PortfolioPosition> processPortfolio(List positions, bool includeCash) {
         value: prop['name'] == 'value'
             ? (prop['value'] as num? ?? 0).toDouble()
             : newPosition.value,
+        plBase: prop['name'] == 'plBase'
+            ? _getPlBaseValue(
+                Map<String, double>.from(prop['value']),
+              )
+            : newPosition.plBase,
+        todayPlBase: prop['name'] == 'todayPlBase'
+            ? _getPlBaseValue(
+                Map<String, double>.from(prop['value']),
+              )
+            : newPosition.todayPlBase,
         breakEvenPrice: prop['name'] == 'breakEvenPrice'
             ? (prop['value'] as num? ?? 0).toDouble()
             : newPosition.breakEvenPrice,
@@ -41,4 +51,8 @@ List<PortfolioPosition> processPortfolio(List positions, bool includeCash) {
   }
 
   return result;
+}
+
+double _getPlBaseValue(Map<String, double> value) {
+  return value.entries.first.value;
 }

@@ -20,12 +20,37 @@ PortfolioPosition _$PortfolioPositionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PortfolioPosition {
+  /// Id of the portfolio position (NOT of the product)
   String get id => throw _privateConstructorUsedError;
   ProductInfo? get productInfo => throw _privateConstructorUsedError;
+
+  /// Can be 'PRODUCT' or 'CASH'
   String get positionType => throw _privateConstructorUsedError;
+
+  /// The current owned quantity of the product.
+  ///
+  /// If it is zero, it means the position is closed.
   int get size => throw _privateConstructorUsedError;
+
+  /// Yesterday price or the last price recorded not today.
+  ///
+  /// To get the real latest price provided by Degiro, use the `closePrice`
+  /// property of the [ProductInfo] object.
   double get price => throw _privateConstructorUsedError;
+
+  /// The pre computed by Degiro APIs yesterday value of the position: <br/>
+  /// value = price * size.
+  ///
+  /// You don't see this value on Degiro UI.
   double get value => throw _privateConstructorUsedError;
+
+  /// Total P/L offset value (you don't see this value on Degiro UI)
+  /// Used to calculate the `totalPl` property.
+  double get plBase => throw _privateConstructorUsedError;
+
+  /// Today P/L offset value (you don't see this value on Degiro UI)
+  /// Used to calculate the `todayPl` property.
+  double get todayPlBase => throw _privateConstructorUsedError;
   double get breakEvenPrice => throw _privateConstructorUsedError;
   double get realizedProductPl => throw _privateConstructorUsedError;
   double get todayRealizedProductPl => throw _privateConstructorUsedError;
@@ -48,6 +73,8 @@ abstract class $PortfolioPositionCopyWith<$Res> {
       int size,
       double price,
       double value,
+      double plBase,
+      double todayPlBase,
       double breakEvenPrice,
       double realizedProductPl,
       double todayRealizedProductPl});
@@ -72,6 +99,8 @@ class _$PortfolioPositionCopyWithImpl<$Res>
     Object? size = freezed,
     Object? price = freezed,
     Object? value = freezed,
+    Object? plBase = freezed,
+    Object? todayPlBase = freezed,
     Object? breakEvenPrice = freezed,
     Object? realizedProductPl = freezed,
     Object? todayRealizedProductPl = freezed,
@@ -100,6 +129,14 @@ class _$PortfolioPositionCopyWithImpl<$Res>
       value: value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
+              as double,
+      plBase: plBase == freezed
+          ? _value.plBase
+          : plBase // ignore: cast_nullable_to_non_nullable
+              as double,
+      todayPlBase: todayPlBase == freezed
+          ? _value.todayPlBase
+          : todayPlBase // ignore: cast_nullable_to_non_nullable
               as double,
       breakEvenPrice: breakEvenPrice == freezed
           ? _value.breakEvenPrice
@@ -142,6 +179,8 @@ abstract class _$$_PortfolioPositionCopyWith<$Res>
       int size,
       double price,
       double value,
+      double plBase,
+      double todayPlBase,
       double breakEvenPrice,
       double realizedProductPl,
       double todayRealizedProductPl});
@@ -169,6 +208,8 @@ class __$$_PortfolioPositionCopyWithImpl<$Res>
     Object? size = freezed,
     Object? price = freezed,
     Object? value = freezed,
+    Object? plBase = freezed,
+    Object? todayPlBase = freezed,
     Object? breakEvenPrice = freezed,
     Object? realizedProductPl = freezed,
     Object? todayRealizedProductPl = freezed,
@@ -198,6 +239,14 @@ class __$$_PortfolioPositionCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
+      plBase: plBase == freezed
+          ? _value.plBase
+          : plBase // ignore: cast_nullable_to_non_nullable
+              as double,
+      todayPlBase: todayPlBase == freezed
+          ? _value.todayPlBase
+          : todayPlBase // ignore: cast_nullable_to_non_nullable
+              as double,
       breakEvenPrice: breakEvenPrice == freezed
           ? _value.breakEvenPrice
           : breakEvenPrice // ignore: cast_nullable_to_non_nullable
@@ -224,6 +273,8 @@ class _$_PortfolioPosition extends _PortfolioPosition {
       this.size = 0,
       this.price = 0,
       this.value = 0,
+      this.plBase = 0,
+      this.todayPlBase = 0,
       this.breakEvenPrice = 0,
       this.realizedProductPl = 0,
       this.todayRealizedProductPl = 0})
@@ -232,22 +283,51 @@ class _$_PortfolioPosition extends _PortfolioPosition {
   factory _$_PortfolioPosition.fromJson(Map<String, dynamic> json) =>
       _$$_PortfolioPositionFromJson(json);
 
+  /// Id of the portfolio position (NOT of the product)
   @override
   final String id;
   @override
   final ProductInfo? productInfo;
+
+  /// Can be 'PRODUCT' or 'CASH'
   @override
   @JsonKey()
   final String positionType;
+
+  /// The current owned quantity of the product.
+  ///
+  /// If it is zero, it means the position is closed.
   @override
   @JsonKey()
   final int size;
+
+  /// Yesterday price or the last price recorded not today.
+  ///
+  /// To get the real latest price provided by Degiro, use the `closePrice`
+  /// property of the [ProductInfo] object.
   @override
   @JsonKey()
   final double price;
+
+  /// The pre computed by Degiro APIs yesterday value of the position: <br/>
+  /// value = price * size.
+  ///
+  /// You don't see this value on Degiro UI.
   @override
   @JsonKey()
   final double value;
+
+  /// Total P/L offset value (you don't see this value on Degiro UI)
+  /// Used to calculate the `totalPl` property.
+  @override
+  @JsonKey()
+  final double plBase;
+
+  /// Today P/L offset value (you don't see this value on Degiro UI)
+  /// Used to calculate the `todayPl` property.
+  @override
+  @JsonKey()
+  final double todayPlBase;
   @override
   @JsonKey()
   final double breakEvenPrice;
@@ -260,7 +340,7 @@ class _$_PortfolioPosition extends _PortfolioPosition {
 
   @override
   String toString() {
-    return 'PortfolioPosition(id: $id, productInfo: $productInfo, positionType: $positionType, size: $size, price: $price, value: $value, breakEvenPrice: $breakEvenPrice, realizedProductPl: $realizedProductPl, todayRealizedProductPl: $todayRealizedProductPl)';
+    return 'PortfolioPosition(id: $id, productInfo: $productInfo, positionType: $positionType, size: $size, price: $price, value: $value, plBase: $plBase, todayPlBase: $todayPlBase, breakEvenPrice: $breakEvenPrice, realizedProductPl: $realizedProductPl, todayRealizedProductPl: $todayRealizedProductPl)';
   }
 
   @override
@@ -276,6 +356,9 @@ class _$_PortfolioPosition extends _PortfolioPosition {
             const DeepCollectionEquality().equals(other.size, size) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.value, value) &&
+            const DeepCollectionEquality().equals(other.plBase, plBase) &&
+            const DeepCollectionEquality()
+                .equals(other.todayPlBase, todayPlBase) &&
             const DeepCollectionEquality()
                 .equals(other.breakEvenPrice, breakEvenPrice) &&
             const DeepCollectionEquality()
@@ -294,6 +377,8 @@ class _$_PortfolioPosition extends _PortfolioPosition {
       const DeepCollectionEquality().hash(size),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(value),
+      const DeepCollectionEquality().hash(plBase),
+      const DeepCollectionEquality().hash(todayPlBase),
       const DeepCollectionEquality().hash(breakEvenPrice),
       const DeepCollectionEquality().hash(realizedProductPl),
       const DeepCollectionEquality().hash(todayRealizedProductPl));
@@ -320,6 +405,8 @@ abstract class _PortfolioPosition extends PortfolioPosition {
       final int size,
       final double price,
       final double value,
+      final double plBase,
+      final double todayPlBase,
       final double breakEvenPrice,
       final double realizedProductPl,
       final double todayRealizedProductPl}) = _$_PortfolioPosition;
@@ -329,17 +416,45 @@ abstract class _PortfolioPosition extends PortfolioPosition {
       _$_PortfolioPosition.fromJson;
 
   @override
+
+  /// Id of the portfolio position (NOT of the product)
   String get id;
   @override
   ProductInfo? get productInfo;
   @override
+
+  /// Can be 'PRODUCT' or 'CASH'
   String get positionType;
   @override
+
+  /// The current owned quantity of the product.
+  ///
+  /// If it is zero, it means the position is closed.
   int get size;
   @override
+
+  /// Yesterday price or the last price recorded not today.
+  ///
+  /// To get the real latest price provided by Degiro, use the `closePrice`
+  /// property of the [ProductInfo] object.
   double get price;
   @override
+
+  /// The pre computed by Degiro APIs yesterday value of the position: <br/>
+  /// value = price * size.
+  ///
+  /// You don't see this value on Degiro UI.
   double get value;
+  @override
+
+  /// Total P/L offset value (you don't see this value on Degiro UI)
+  /// Used to calculate the `totalPl` property.
+  double get plBase;
+  @override
+
+  /// Today P/L offset value (you don't see this value on Degiro UI)
+  /// Used to calculate the `todayPl` property.
+  double get todayPlBase;
   @override
   double get breakEvenPrice;
   @override
