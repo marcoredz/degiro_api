@@ -1,5 +1,4 @@
 ## 0.6.0
-### 0.6.0-dev.1
 - Add new properties to `PortfolioPosition` model:
     - `plBase`
     - `todayPlBase`
