@@ -54,4 +54,9 @@ abstract class IRepository {
     DateTime fromDate,
     DateTime toDate,
   );
+
+  Future<Result<DegiroApiError, void>> getAccountInfoRequest(
+    String sessionId,
+    int intAccount,
+  );
 }

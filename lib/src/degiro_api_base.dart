@@ -43,6 +43,19 @@ class DegiroApi {
     _instance = this;
   }
 
+  /// Checks if the current sessionId is still valid
+  Future<bool> _isSessionValid() async {
+    if (_sessionId.isEmpty) return false;
+
+    // Make get account info request to check the sessionId validity
+    final result = await _repository.getAccountInfoRequest(
+      sessionId,
+      accountInfo.intAccount,
+    );
+
+    return result.when((error) => false, (success) => true);
+  }
+
   /// Login into Degiro and gets the account info.
   ///
   /// It works with both [DegiroApi] constructors:
@@ -71,6 +84,7 @@ class DegiroApi {
 
     // Gets client info based on the sessionId
     if (_sessionId.isNotEmpty) {
+      // This request works even with a previous sessionId that has been disposed
       final clientInfoResult =
           await _repository.getClientInfoRequest(_sessionId);
 
@@ -80,6 +94,14 @@ class DegiroApi {
           accountInfo = data;
         },
       );
+
+      // Check if the sessionId is still valid only after getting the accountInfo
+      // to get the accountId used in the getAccountInfoRequest method
+      if (!(await _isSessionValid())) {
+        throw DegiroApiError(
+          message: 'The sessionId provided is not valid anymore',
+        )..methodName = 'login';
+      }
     } else {
       throw DegiroApiError(message: 'Failed to retrieve the sessionId')
         ..methodName = 'login';

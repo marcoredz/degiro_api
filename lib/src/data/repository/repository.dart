@@ -271,4 +271,26 @@ class Repository implements IRepository {
       return Error(DegiroApiError(message: e.toString()));
     }
   }
+
+  @override
+  Future<Result<DegiroApiError, void>> getAccountInfoRequest(
+    String sessionId,
+    int intAccount,
+  ) async {
+    try {
+      // We don't care about the response because we use this request
+      // just to check if the sessionId is still valid
+      await _dio.get(
+        '$getAccountInfoUrl$intAccount;jsessionid=$sessionId',
+      );
+
+      return Success(null);
+    } on DioError catch (e) {
+      return Error(
+        DegiroApiError(message: e.message, code: e.response?.statusCode),
+      );
+    } on Exception catch (e) {
+      return Error(DegiroApiError(message: e.toString()));
+    }
+  }
 }

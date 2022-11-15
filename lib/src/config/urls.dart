@@ -5,7 +5,7 @@ const String logoutUrl = '/trading/secure/logout';
 const String clientInfoUrl = '/pa/secure/client';
 const String getAccountConfigUrl = '/login/secure/config';
 const String getAccountBalanceUrl = '/reporting/secure/v6/accountoverview';
-const String getAccountInfoUrl = '/v5/account/info/';
+const String getAccountInfoUrl = '/trading/secure/v5/account/info/';
 
 const String getStocksUrl = '/products_s/secure/v5/stocks';
 const String productSearchUrl = '/product_search/secure/v5/products/lookup';
