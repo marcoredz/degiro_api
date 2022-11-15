@@ -15,7 +15,7 @@
             "name": "main",
             "request": "launch",
             "type": "dart",
-            "program": "example/degiro_api_example.dart",
+            "program": "example/main.dart",
             "console": "terminal"
         }
     ]
