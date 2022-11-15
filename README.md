@@ -65,7 +65,7 @@ try {
 Since this package is maintained by one person, help is appreciated so feel free to open issues & pull requests on GitHub repository.
 
 ### Freezed code generation
-Once you forked the project, you have to execute the dart build runner command to generate *.freezed and *.g files.
+Run this command to auto-generate the models if you add new fields to them
 ```console
 dart run build_runner build --delete-conflicting-outputs 
 ```
