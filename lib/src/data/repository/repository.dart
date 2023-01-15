@@ -22,7 +22,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, LoginResponse>> loginRequest(
+  Future<Result<LoginResponse, DegiroApiError>> loginRequest(
     String username,
     String password,
   ) async {
@@ -56,7 +56,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, AccountInfo>> getClientInfoRequest(
+  Future<Result<AccountInfo, DegiroApiError>> getClientInfoRequest(
     String sessionId,
   ) async {
     try {
@@ -86,7 +86,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, void>> logoutRequest(
+  Future<Result<void, DegiroApiError>> logoutRequest(
     String sessionId,
     int intAccount,
   ) async {
@@ -107,7 +107,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, List<dynamic>>> getPortfolioPositionsRequest(
+  Future<Result<List<dynamic>, DegiroApiError>> getPortfolioPositionsRequest(
     String sessionId,
     int intAccount,
   ) async {
@@ -128,7 +128,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, List<ProductInfo>>> getProductsInfoRequest(
+  Future<Result<List<ProductInfo>, DegiroApiError>> getProductsInfoRequest(
     String sessionId,
     int intAccount,
     List<String> productIds,
@@ -157,7 +157,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, List<Transaction>>> getTransactionsRequest(
+  Future<Result<List<Transaction>, DegiroApiError>> getTransactionsRequest(
     String sessionId,
     int intAccount,
     DateTime fromDate,
@@ -191,7 +191,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, List<ProductInfo>>> searchProductsRequest(
+  Future<Result<List<ProductInfo>, DegiroApiError>> searchProductsRequest(
     String sessionId,
     int intAccount,
     String searchText,
@@ -240,7 +240,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, List<CashMovement>>> getCashMovementsRequest(
+  Future<Result<List<CashMovement>, DegiroApiError>> getCashMovementsRequest(
     String sessionId,
     int intAccount,
     DateTime fromDate,
@@ -273,7 +273,7 @@ class Repository implements IRepository {
   }
 
   @override
-  Future<Result<DegiroApiError, void>> getAccountInfoRequest(
+  Future<Result<void, DegiroApiError>> getAccountInfoRequest(
     String sessionId,
     int intAccount,
   ) async {

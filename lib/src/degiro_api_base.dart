@@ -75,10 +75,10 @@ class DegiroApi {
 
       // Login request returning the sessionId
       loginResult.when(
-        (error) => throw error..methodName = 'login',
         (loginResponse) {
           _sessionId = loginResponse.sessionId;
         },
+        (error) => throw error..methodName = 'login',
       );
     }
 
@@ -89,10 +89,10 @@ class DegiroApi {
           await _repository.getClientInfoRequest(_sessionId);
 
       clientInfoResult.when(
-        (error) => throw error..methodName = 'login',
         (data) {
           accountInfo = data;
         },
+        (error) => throw error..methodName = 'login',
       );
 
       // Check if the sessionId is still valid only after getting the accountInfo
@@ -116,10 +116,10 @@ class DegiroApi {
         await _repository.logoutRequest(_sessionId, accountInfo.intAccount);
 
     result.when(
-      (error) => throw error..methodName = 'logout',
       (success) {
         _sessionId = '';
       },
+      (error) => throw error..methodName = 'logout',
     );
   }
 
@@ -141,7 +141,6 @@ class DegiroApi {
     // Gets portfolio positions,
     // which only contain an id as product reference
     await result.when(
-      (error) => throw error..methodName = 'portfolioPositions',
       (data) async {
         try {
           positions = processPortfolio(data, includeCash);
@@ -165,6 +164,7 @@ class DegiroApi {
             )
             .toList();
       },
+      (error) => throw error..methodName = 'portfolioPositions',
     );
 
     return positions;
@@ -179,8 +179,8 @@ class DegiroApi {
     );
 
     return result.when(
-      (error) => throw error..methodName = 'productInfo',
       (productInfo) => productInfo.first,
+      (error) => throw error..methodName = 'productInfo',
     );
   }
 
@@ -195,10 +195,10 @@ class DegiroApi {
     List<ProductInfo> productInfos = [];
 
     result.when(
-      (error) => throw error..methodName = 'productInfos',
       (data) {
         productInfos = data;
       },
+      (error) => throw error..methodName = 'productInfos',
     );
 
     return productInfos;
@@ -226,7 +226,6 @@ class DegiroApi {
     List<Transaction> transactions = [];
 
     await result.when(
-      (error) => throw error..methodName = 'transactions',
       (data) async {
         transactions = data;
         // Gets product infos by ids
@@ -244,6 +243,7 @@ class DegiroApi {
             )
             .toList();
       },
+      (error) => throw error..methodName = 'transactions',
     );
 
     return transactions;
@@ -276,10 +276,10 @@ class DegiroApi {
     List<ProductInfo> products = [];
 
     result.when(
-      (error) => throw error..methodName = 'searchProducts',
       (data) {
         products = data;
       },
+      (error) => throw error..methodName = 'searchProducts',
     );
 
     return products;
@@ -305,8 +305,8 @@ class DegiroApi {
     List<CashMovement> movements = [];
 
     movements = result.when(
-      (error) => throw error..methodName = 'cashMovements',
       (data) => data,
+      (error) => throw error..methodName = 'cashMovements',
     );
 
     // As default 'showFlatexMovements' is set to false.
