@@ -49,7 +49,7 @@ class Repository implements IRepository {
         );
       }
 
-      return Error(DegiroApiError(message: e.message, exception: e));
+      return Error(DegiroApiError(message: e.message ?? '', exception: e));
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
     }
@@ -78,7 +78,7 @@ class Repository implements IRepository {
         );
       }
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -99,7 +99,7 @@ class Repository implements IRepository {
       return Success(null);
     } on DioError catch (e) {
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -120,7 +120,7 @@ class Repository implements IRepository {
       return Success(response.data['portfolio']['value']);
     } on DioError catch (e) {
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -149,7 +149,7 @@ class Repository implements IRepository {
       );
     } on DioError catch (e) {
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -183,7 +183,7 @@ class Repository implements IRepository {
       return Success(data.map((e) => Transaction.fromJson(e)).toList());
     } on DioError catch (e) {
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -232,7 +232,7 @@ class Repository implements IRepository {
       }
 
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -265,7 +265,7 @@ class Repository implements IRepository {
       return Success(data.map((e) => CashMovement.fromJson(e)).toList());
     } on DioError catch (e) {
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
@@ -287,7 +287,7 @@ class Repository implements IRepository {
       return Success(null);
     } on DioError catch (e) {
       return Error(
-        DegiroApiError(message: e.message, code: e.response?.statusCode),
+        DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
     } on Exception catch (e) {
       return Error(DegiroApiError(message: e.toString()));
