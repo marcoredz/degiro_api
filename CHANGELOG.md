@@ -1,4 +1,6 @@
-## 0.6.2
+## 0.6.3
+Update 'dio' dependency version to 5.0.3
+### 0.6.2
 Update 'multiple_result' dependency version to 4.0.0
 ### 0.6.1
 Additional check of the sessionId validity during login
