@@ -1,4 +1,6 @@
-## 0.6.3
+## 0.6.4
+Update latest dependencies
+### 0.6.3
 Update 'dio' dependency version to 5.0.3
 ### 0.6.2
 Update 'multiple_result' dependency version to 4.0.0
