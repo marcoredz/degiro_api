@@ -15,7 +15,7 @@ class DegiroInterceptors extends Interceptor {
       if (DegiroApi.instance.sessionId.isEmpty ||
           DegiroApi.instance.accountInfo.intAccount == invalidIntValue) {
         return handler.reject(
-          DioError(
+          DioException(
             requestOptions: options,
             error: 'You must log in',
           ),

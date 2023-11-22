@@ -33,12 +33,12 @@ class Repository implements IRepository {
           'username': username,
           'password': password,
           'isPassCodeReset': false,
-          'isRedirectToMobile': false
+          'isRedirectToMobile': false,
         },
       );
 
       return Success(LoginResponse.fromJson(response.data));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         final degiroStatusText = e.response?.data['statusText'] ?? '';
         return Error(
@@ -66,7 +66,7 @@ class Repository implements IRepository {
       );
 
       return Success(AccountInfo.fromJson(response.data['data']));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         final errors = List.from(e.response!.data['errors'] ?? []);
         return Error(
@@ -97,7 +97,7 @@ class Repository implements IRepository {
       );
 
       return Success(null);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Error(
         DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
@@ -118,7 +118,7 @@ class Repository implements IRepository {
       );
 
       return Success(response.data['portfolio']['value']);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Error(
         DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
@@ -147,7 +147,7 @@ class Repository implements IRepository {
       return Success(
         data.entries.map((e) => ProductInfo.fromJson(e.value)).toList(),
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Error(
         DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
@@ -181,7 +181,7 @@ class Repository implements IRepository {
       final data = List.from(response.data['data']);
 
       return Success(data.map((e) => Transaction.fromJson(e)).toList());
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Error(
         DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
@@ -219,7 +219,7 @@ class Repository implements IRepository {
       final productsJson = List.from(response.data['products'] ?? []);
 
       return Success(productsJson.map((e) => ProductInfo.fromJson(e)).toList());
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         final errors = List.from(e.response!.data['errors'] ?? []);
         return Error(
@@ -263,7 +263,7 @@ class Repository implements IRepository {
       final data = List.from(response.data['data']['cashMovements']);
 
       return Success(data.map((e) => CashMovement.fromJson(e)).toList());
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Error(
         DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
@@ -285,7 +285,7 @@ class Repository implements IRepository {
       );
 
       return Success(null);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Error(
         DegiroApiError(message: e.message ?? '', code: e.response?.statusCode),
       );
